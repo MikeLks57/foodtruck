@@ -11,4 +11,5 @@ $w_routes = array(
 	['GET|POST', 	'/user/reset-password/[:token]',	'User#resetPassword',		'user_reset_password'],
 	['GET|POST', 	'/confirm-account/[:token]',		'User#confirm',				'user_confirm_account'],
 	['GET',			'/slider',							'Default#slider',			'default_slider'],
-	);
+	['GET',			'/map',								'Default#map',				'default_map'],
+);
