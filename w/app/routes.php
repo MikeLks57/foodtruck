@@ -1,4 +1,5 @@
 <?php
+
 	
 	$w_routes = array(
 
@@ -15,7 +16,10 @@
 		['GET|POST',	'/user/password-recovery',			'User#passwordRecovery', 	'user_password_recovery'],
 		['GET|POST',	'/user/reset-password/[:token]',	'User#resetPassword', 		'user_rest_password'],
 		['GET|POST',	'/confirm-account/[:token]',		'User#confirm', 			'user_confirm_account'],
-        ['GET',         '/admin-home',                              'Admin#home',               'admin_home'],
+        ['GET',         '/admin-home',                      'Admin#home',               'admin_home'],
 
-    );
+
+		['GET',			'/slider',							'Default#slider',			'default_slider'],
+		['GET',			'/map',								'Default#map',				'default_map'],
+);
 
