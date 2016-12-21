@@ -12,6 +12,7 @@ class AdminController extends Controller
      */
     public function home()
     {
+        $this->allowTo('admin');
         $this->show('admin/home');
     }
 
