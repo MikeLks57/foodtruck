@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title><?= $this->e($title) ?></title>
-
+	<title></title>
 	<!-- polices -->
 
 	<!-- Bootstrap Latest compiled and minified CSS -->
@@ -12,10 +11,15 @@
 	<!-- Bootstrap Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+  	<script src='https://www.google.com/recaptcha/api.js'></script>
 
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-
-  <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+  	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 </head>
 <body>
 	<div class="container">
@@ -119,6 +123,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<!-- Fichier Script JS -->
 	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+	<?= $this->section('scripts') ?>
 
 </body>
 </html>

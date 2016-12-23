@@ -7,6 +7,7 @@ use Model\ProductsModel;
 use Model\CategoriesModel;
 use \W\Controller\Controller;
 use Model\sliderModel;
+use Model\mapModel;
 
 
 class DefaultController extends Controller
@@ -47,5 +48,11 @@ class DefaultController extends Controller
 		$this->show('slider', ['allSlider' => $slider]);
 	}
 
+	public function map()
+	{
+		$mapModel= New mapModel();
+		$map = $mapModel->findAll();
+		$this->show('map', ['allMap' => $map]);
+	}
 
 }
