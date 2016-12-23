@@ -24,3 +24,8 @@ h1 {
 h2 {
 	color: #66D9EF;
 }
+
+#map {
+	width: 400px;
+	height: 600px;
+}

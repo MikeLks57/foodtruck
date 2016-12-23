@@ -12,4 +12,5 @@ $w_routes = array(
 	['GET|POST', 	'/confirm-account/[:token]',		'User#confirm',				'user_confirm_account'],
 	['GET',			'/slider',							'Default#slider',			'default_slider'],
 	['GET',			'/map',								'Default#map',				'default_map'],
-	);
+	['GET',			'/infos',							'Default#infos',			'default_infos'],
+);
