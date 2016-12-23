@@ -3,7 +3,7 @@
 namespace Model;
 use W\Model\Model;
 
-class infosModel extends Model
+class aboutModel extends Model
 {
 
 }
