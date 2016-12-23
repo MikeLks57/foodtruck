@@ -8,7 +8,7 @@ use Model\CategoriesModel;
 use \W\Controller\Controller;
 use Model\sliderModel;
 use Model\mapModel;
-
+use Model\infosModel;
 
 class DefaultController extends Controller
 {
@@ -53,6 +53,14 @@ class DefaultController extends Controller
 		$mapModel= New mapModel();
 		$map = $mapModel->findAll();
 		$this->show('map', ['allMap' => $map]);
+	}
+
+	public function about()
+	{
+		$aboutModel= New InfosModel();
+
+		$about = $aboutModel->getInfo('about');
+		$this->show('about', ['about' => $about]);
 	}
 
 }
