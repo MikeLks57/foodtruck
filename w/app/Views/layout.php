@@ -60,7 +60,7 @@
         		<div class="row">
         			<div class="col-xs-12 col-md-5">
         				<p>
-        					Inscrivez vous à notre newsletter<br>
+        						Inscrivez vous à notre newsletter<br>
         					et recevez nos promotions en exclusivité
         				</p>
         				<p>
