@@ -2,8 +2,12 @@
 
 namespace Controller;
 
+
+use Model\ProductsModel;
+use Model\CategoriesModel;
 use \W\Controller\Controller;
 use Model\sliderModel;
+
 
 class DefaultController extends Controller
 {
@@ -16,11 +20,32 @@ class DefaultController extends Controller
 		$this->show('default/home');
 	}
 
+
+	public function displayMenu($idCategory = 1)
+	{
+		// Récupère les différents categories
+		// Il nous faut le modèle pour cela :
+		$categoryModel = new CategoriesModel();
+
+		$category = $categoryModel->findAll();
+
+	
+		// Récupère les différents menus
+		// Il nous faut le modèle pour cela :
+		$menuModel = new ProductsModel();
+		$menu = $menuModel->findProductsByCategory($idCategory);
+
+		$this->show('menu', ['allCategory' => $category, 'allMenu' => $menu] );
+
+
+	}
+
 	public function slider()
 	{
 		$sliderModel = new sliderModel();
 		$slider = $sliderModel->findAll();
 		$this->show('slider', ['allSlider' => $slider]);
 	}
+
 
 }
