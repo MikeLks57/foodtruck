@@ -8,6 +8,7 @@ use \W\Model\UsersModel;
 use \Model\RecoverytokensModel;
 use \Model\ConfirmtokensModel;
 use \Service\MailerService;
+use \Model\ContactModel;
 
 class UserController extends Controller
 {
@@ -318,5 +319,103 @@ EOT;
             $this->redirectToRoute('user_login', ['errors' => ['Le mail de confirmation n\' a pas pu être envoyé']]);
         }
     }
+
+
+/*Pour la page contact*/
+
+
+    public function contact() { 
+
+        if (isset($_POST['send_message'])) {
+            $errors = array();
+
+            $lastname = trim($_POST['lastname']);
+            $lastname = filter_var($lastname, FILTER_SANITIZE_SPECIAL_CHARS);
+            $object = trim($_POST['object']);
+            $object = filter_var($object, FILTER_SANITIZE_SPECIAL_CHARS);
+            $textarea = trim($_POST['textarea']);
+            $textarea = filter_var($textarea, FILTER_SANITIZE_SPECIAL_CHARS);
+            $mail = filter_var($_POST['mail'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+            if (!empty($_POST['lastname'])) {
+                if (strlen($_POST['lastname']) < 4) {
+                    $errors['lastname'] = 'Votre nom doit comprendre au moins 4 caractères.';
+                }
+            }
+            else {
+    // Si on a pas précisé d'objet
+                $errors['lastname']['empty'] = true;
+            }
+            if (!empty($_POST['object'])) {
+                if (strlen($_POST['object']) < 4) {
+                    $errors['object'] = 'L\'objet doit comprendre au moins 10 caractères.';
+                }
+            }
+            else {
+    // Si on a pas précisé d'objet
+                $errors['object'] = 'Merci d\'indiquer l\'objet de votre message.';
+            }
+            if (!empty($_POST['textarea'])) {
+                if (strlen($_POST['textarea']) < 4) {
+                    $errors['textarea'] = 'Votre message doit comprendre au moins 50 caractères.';
+                }
+            }
+            else {
+    // Si on a pas précisé d'objet
+                $errors['textarea']['empty'] = true;
+            }
+
+            if (!empty($_POST['mail'])) {
+    // On teste la validité du mail
+                $isMailValid = filter_var($mail, FILTER_VALIDATE_EMAIL);
+
+                if (!$isMailValid) {
+                    $errors['mail'] = 'L\'email renseigné n\'est pas valide.';
+                }
+            }
+            else {
+                $errors['mail'] = 'Merci de renseigner votre email.';
+            }
+
+
+    // Le formulaire est valide si je n'ai pas enregistré d'erreurs
+            if (count($errors) == 0) {
+                $formValid = true;
+            }
+
+            $adminMail = 'lenajilian76@hotmail.fr';
+            $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
+            $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
+
+
+
+
+            /*Envoie le mail à l'administrateur*/
+            if ($formValid) {
+                $myMailer = new MailerService();
+                $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
+            }
+
+
+
+
+            if (isset($_POST['checkbox'])) {
+                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
+                $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
+                echo $_POST['mail'];
+                /*Envoie une copie si la personne coche la checkbox*/
+                $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
+            }
+
+            $this->show('contact', ['errors' => $errors]);
+        }
+
+        else {
+        // Sinon, afficher le formulaire
+            $this->show('contact');
+        }
+    }
+
 
 }
