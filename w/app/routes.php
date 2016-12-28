@@ -24,8 +24,6 @@
 
 		['GET',			'/slider',							'Default#slider',						'default_slider'],
 		['GET',			'/map',								'Default#map',							'default_map'],
-
-	['GET',			'/about',							'Default#about',			'default_about'],
-	['GET|POST',	'/contact',							'User#contact',				'user_contact'],
-
+		['GET',			'/about',							'Default#about',			'default_about'],
+		['GET|POST',	'/contact',							'User#contact',				'user_contact'],
 );
