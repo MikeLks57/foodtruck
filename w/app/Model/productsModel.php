@@ -18,15 +18,21 @@ class ProductsModel extends Model
 		return $products->fetchAll();
 	}
 
-	/*public function getIngredientsByProduct($idProduct)
+
+	public function getIdProductByName($name)
+	{
+		$pdo = ConnectionModel::getDbh();
+		$sql =	'SELECT id FROM products WHERE name LIKE "%'.$name.'%"';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+}
+
+	public function getIngredientsByProduct($idProduct)
 	{
 		$sql = 'SELECT ingredients.name as ingredients, products.name as productName FROM ingredients INNER JOIN ingredients_product ON ingredients_product.id_ingredient = ingredients.id AND ingredients_product.id_product = products.id WHERE id_product = :idProduct'; 
-	}*/
-
-	
-
-
-
+	}
 
 }
 
