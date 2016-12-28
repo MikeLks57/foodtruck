@@ -4,7 +4,7 @@ namespace Model;
 
 use W\Model\Model;
 
-class CategoriesModel extends Model
+class IngredientsModel extends Model
 {
 	
 }

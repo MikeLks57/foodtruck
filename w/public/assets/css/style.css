@@ -1,34 +1,90 @@
 html, body {
 	font-family: Consolas, monaco, monospace;
-	background-color: white;
 	color: black;
 }
 
+/* Main-header */
+
 .container {
-	margin: 50px;
+	width: 100%;
+	margin-top: 10px;
+	margin: 10px, 50px, 10px;
 }
 
-a {
-	text-decoration: none;
-	color: #890709;
+.navbar-default {
+	background-color: #890709;
+	background-image: none;
 }
 
-a:hover {
-	color: #F92672;
+.navbar-default .navbar-nav>li>a {
+	color: #FFFFFF;
 }
 
-h1 {
-	color: #F92672;
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #FFFFFF;
+    background-image: none;
+    background-color: #890709;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	text-decoration: underline;
+	color: #FFFFFF;
 }
 
 h2 {
 	color: #66D9EF;
 }
 
-button, input, optgroup, select, textarea, .btn-info{
-	color: black;
+#map {
+	width: 400px;
+	height: 600px;
 }
 
-li{
-	display: block;
+/* footer */
+
+div.container-fluid.footer-default {
+	margin-top: 20px;
+	background-color: #890709;
 }
+
+/* produits */
+
+div.row.productsDisplay {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div#content_prod {
+	display: flex;
+	flex-wrap: wrap;
+	border: 2px solid red;
+}
+
+div#content_prod.row {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	background-color: yellow;
+	padding-right: 10px;
+}
+
+div#content_prod div.col-xs-12.col-md-3 {
+	display: flex;
+}
+
+div#content_prod img {
+	display: flex;
+	margin: 10px;
+}
+
+
+label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+div#users-contain { width: 350px; margin: 20px 0; }
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
