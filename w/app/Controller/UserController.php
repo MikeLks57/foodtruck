@@ -320,10 +320,6 @@ EOT;
         }
     }
 
-    
-/*Pour la page contact*/
-
-
     public function contact() { 
 
         if (isset($_POST['send_message'])) {
@@ -416,5 +412,4 @@ EOT;
             $this->show('contact');
         }
     }
-
 }

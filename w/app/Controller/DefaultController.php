@@ -128,6 +128,20 @@ class DefaultController extends Controller
 		$this->show('slider', ['allSlider' => $slider]);
 	}
 
+	public function map()
+	{
+		$mapModel= New mapModel();
+		$map = $mapModel->findAll();
+		$this->show('map', ['allMap' => $map]);
+	}
+
+	public function about()
+	{
+		$aboutModel= New InfosModel();
+
+		$about = $aboutModel->getInfo('about');
+		$this->show('about', ['about' => $about]);
+	}
 
 	public function map()
 	{

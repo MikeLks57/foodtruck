@@ -2,8 +2,9 @@
 
 namespace Model;
 
-use \W\Model\ConnectionModel;
-use \W\Model\Model;
+use W\Model\Model;
+use W\Model\ConnectionModel;
+use PDO;
 
 class ProductsModel extends Model
 {
@@ -17,7 +18,7 @@ class ProductsModel extends Model
 
 		return $stmt->fetchAll();
 	}
-
+	
 	public function getAllProductsByIdCategory($idCategory)
 	{
 		$pdo = ConnectionModel::getDbh();
@@ -42,3 +43,4 @@ class ProductsModel extends Model
 		$sql = 'SELECT ingredients.name as ingredients, products.name as productName FROM ingredients INNER JOIN ingredients_product ON ingredients_product.id_ingredient = ingredients.id AND ingredients_product.id_product = products.id WHERE id_product = :idProduct'; 
 	}
 }
+
