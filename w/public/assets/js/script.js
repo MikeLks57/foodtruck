@@ -1,4 +1,3 @@
-
 $(function(){
     $('.order').click(function(e){
         e.preventDefault();
@@ -37,10 +36,8 @@ $(function(){
             $('#command').html(r);
         });
     });
- 
-
-
-/*Fonction pour cacher les marqueurs de GoogleMap et afficher uniquement celui du jour sélectionner. A ne pas effacer malgré le doublon dans le fichier map.php*/
+    
+    /*Fonction pour cacher les marqueurs de GoogleMap et afficher uniquement celui du jour sélectionner. A ne pas effacer malgré le doublon dans le fichier map.php*/
 
     $('#selectDay').change(function(){
         markers.forEach( function(element, index) {
@@ -49,6 +46,5 @@ $(function(){
 
         markers[document.getElementById('selectDay').value].setMap(map);
     });
+    /*Fin de la fonction pour la map*/
 });
-/*Fin de la fonction pour la map*/
-

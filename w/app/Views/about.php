@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <?php $this->layout('layout', ['titre'=>'A propos'])  ?>
 
 

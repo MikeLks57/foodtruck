@@ -15,7 +15,7 @@ class MailerService
         $mail->SMTPAuth = true;                               	// Active l'autentification SMTP
         $mail->Username = 'wf3.mailer@gmail.com';             	// SMTP username
         $mail->Password = '$NJ27^^4q7';                   		// SMTP password
-        $mail->SMTPSecure = 'ssl';                            	// TLS Mode
+        $mail->SMTPSecure = 'tls';                            	// TLS Mode
         $mail->Port = 587;                                    	// Port TCP à utiliser
         $mail->CharSet = 'UTF-8';
 

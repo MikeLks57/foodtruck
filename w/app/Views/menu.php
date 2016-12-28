@@ -105,7 +105,7 @@
 					</ul><br>
 					<button type="submit" name="delete" data-id="<?php echo $nbProduct ?>" class="delete">X</button>
 				<?php endforeach ; ?>
-				<a href="<?php echo $this->url('add_order') ?>"><button type="submit" name="addOrder">Finaliser la commande</button></a>
+				<button type="submit" name="addOrder"><a href="<?php echo $this->url('add_order') ?>">Finaliser la commande</a></button>
 			<?php endif ?>
 
 		</form>

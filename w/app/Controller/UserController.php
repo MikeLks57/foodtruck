@@ -320,7 +320,7 @@ EOT;
         }
     }
 
-
+    
 /*Pour la page contact*/
 
 
@@ -416,6 +416,5 @@ EOT;
             $this->show('contact');
         }
     }
-
 
 }
