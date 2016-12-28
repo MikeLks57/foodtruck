@@ -17,4 +17,13 @@ class ProductsModel extends Model
 
 		return $stmt->fetchAll();
 	}
+
+	public function getIdProductByName($name)
+	{
+		$pdo = ConnectionModel::getDbh();
+		$sql =	'SELECT id FROM products WHERE name LIKE "%'.$name.'%"';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 }

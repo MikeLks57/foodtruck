@@ -30,7 +30,7 @@
     <br>
     <?php if(!isset($_SESSION['user'])) : ?>
         <div class="form-group">
-            <div  id="connectDiv" class="hidden">
+            <div  id="connectDiv">
                 <form action="<?= $this->url('user_login') ?>" method="post">
                     <input type="text" name="mail" placeholder="E-mail"><br><br>
                     <input type="password" name="pass" placeholder="Mot de passe"><br><br>

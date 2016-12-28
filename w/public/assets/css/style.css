@@ -1,7 +1,7 @@
 html, body {
 	font-family: Consolas, monaco, monospace;
-	background-color: #272822;
-	color: #F8F8F2;
+	background-color: white;
+	color: black;
 }
 
 .container {
@@ -10,7 +10,7 @@ html, body {
 
 a {
 	text-decoration: none;
-	color: #A6E22E;
+	color: #890709;
 }
 
 a:hover {
@@ -23,4 +23,12 @@ h1 {
 
 h2 {
 	color: #66D9EF;
+}
+
+button, input, optgroup, select, textarea, .btn-info{
+	color: black;
+}
+
+li{
+	display: block;
 }
