@@ -15,4 +15,13 @@ class InfosModel extends Model
 		$infos->execute();
 		return $infos->fetchColumn(0);
 	}
+
+	public function aboutAdmin($name) {
+		global $pdo;
+		$stmt = $pdo->prepare('SELECT value FROM infos WHERE name = :name');
+		$stmt->bindValue(':name', $name);
+		$stmt->execute();
+		return $stmt->fetch()['value'];
+	}
+
 }

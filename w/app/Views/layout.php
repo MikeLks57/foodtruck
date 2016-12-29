@@ -13,6 +13,15 @@
 
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+
 </head>
 <body>
 	<div class="container">

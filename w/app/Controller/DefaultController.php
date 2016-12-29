@@ -3,6 +3,7 @@
 namespace Controller;
 
 
+use \W\Controller\Controller;
 use Model\ProductsModel;
 use Model\CategoriesModel;
 use Model\SupplementsModel;
