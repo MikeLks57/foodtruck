@@ -1,38 +1,9 @@
-<?php $this->layout('layout', ['title' => 'Menu']) ?>
-
-<?php $this->start('main_content') ?>
-<?php /*session_unset(); session_destroy()*/ ?>
-
-<input type="hidden" id="url_order" value="<?php echo $this->url('add_product_supplement') ?>">
-<input type="hidden" id="url_delete" value="<?php echo $this->url('delete_product_supplement') ?>">
-<input type="hidden" id="url_search" value="<?php echo $this->url('search_product') ?>">
-
-<!-- Affichage des catégories -->
-<nav class="navbar navbar-default">
-	<ul class="nav navbar-nav">
-		<?php foreach ($allCategory as $category): ?>
-			<li><a href="<?php echo $this->url('display_menu_category', ['id' => $category['id']]) ?>" title="<?php echo $category['name'] ?>"><?php echo $category['name'] ?></a></li>
-		<?php endforeach ?>
-	</ul>
-
-	<form class="navbar-form navbar-right center-block" name="search" method="POST">
-        <div class="form-group" id="form-group">
-        	<input type="text" id="search" class="form-control search" placeholder="Rechercher un produit">
-        </div>
-    </form>
-</nav>
-
-<!-- Affichage de la liste des produits en fonction de la categorie -->
 <div class="col-md-8" id="menu">
-
 	<?php foreach ($allMenu as $menu): ?>
 		<div class="col-md-3">
 
 			<h1><?php echo $menu['name'] ?></h1>
-			
 			<img src="<?php echo $this->assetUrl('uploads/img/'.$menu['picture']) ?>" alt="<?php echo $menu['name'] ?>">
-			
-			
 			<p><?php echo $menu['description'] ?></p>
 			<p>Prix : <?php echo $menu['price'] ?> €</p>
 
@@ -88,50 +59,3 @@
 		</div>
 	<?php endforeach ?>
 </div>
-
-<!-- Affichage de la commande -->
-<div class="col-md-4">
-	<h2>Ma commande</h2>
-	<div>
-		<form action="<?php echo $this->url('add_order') ?>" id="command" method="POST" accept-charset="utf-8">
-		
-			<?php if (isset($_SESSION['basket'])): ?>
-				
-				<?php foreach($_SESSION['basket'] as $nbProduct => $product) : ?>
-					
-					<ul>
-						<h3>
-						<?php echo $product['name_product'] ?> 
-							<button type="submit" name="delete" class="delete" data-id="<?php echo $nbProduct ?>" >X</button>
-						</h3>
-							
-						<?php foreach ($product['supplements'] as $supplement): ?>
-
-							<?php if ($supplement != '0'): ?>
-
-								<li> + <?php echo $supplement ?></li> 
-
-							<?php endif ?>
-						
-						<?php endforeach ?>
-					</ul><br>
-					
-				<?php endforeach ; ?>
-				<?php if (isset($_SESSION['user'])){ ?>
-					<button type="submit" name="addOrder">Finaliser la commande</button>
-				<?php } else { ?>
-					<button><a href="<?php echo $this->url('user_login') ?>">Se connecter</a></button>
-				<?php } ?>
-				
-			<?php endif ?>
-
-		</form>
-	</div>
-</div>
-
-<div id="ok"></div>
-
-
-<?php /*unset($_SESSION['basket']['1']);*/ ?>
-<?php/* print_r($_SESSION['basket'])*/ ?>
-<?php $this->stop('main_content') ?>

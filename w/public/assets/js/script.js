@@ -1,5 +1,27 @@
 
 $(function(){
+    function deleteProductEvent(){
+        $('.delete').click(function(e){
+            e.preventDefault();
+            var $this = $(this);
+            $.ajax({
+                url : $('#url_delete').val(),
+                method : 'post',
+                data: {
+                    form: $this.parent('form').serialize(),
+                    nbProduct: $this.attr('data-id'),
+                }
+            }).done(function(r){
+                // Si ajout, affichage les produits dans la commande
+                $('#command').html(r);
+                deleteProductEvent();
+            }).always(function(r){
+                $('#command').html(r);
+                deleteProductEvent();
+            });
+        });
+    }
+
     $('.order').click(function(e){
         e.preventDefault();
         var $this = $(this);
@@ -13,30 +35,37 @@ $(function(){
         }).done(function(r){
             // Si ajout, affichage les produits dans la commande
             $('#command').html(r);
-            console.log(r);
         }).always(function(r){
             $('#command').html(r);
-            console.log('success');
+            deleteProductEvent();
         });
     });
 
-    $('.delete').click(function(e){
-        e.preventDefault();
+    $('.search').on('input', function(){
         var $this = $(this);
-        $.ajax({
-            url : $('#url_delete').val(),
-            method : 'post',
-            data: {
-                form: $this.parent('form').serialize(),
-                nbProduct: $this.attr('data-id'),
-            }
-        }).done(function(r){
-            // Si ajout, affichage les produits dans la commande
-            $('#command').html(r);
-        }).always(function(r){
-            $('#command').html(r);
-        });
+        var searchProduct = $('#search').val();
+
+        if (searchProduct == "") {
+           document.location.href="/foodtruck/w/public/menu";
+       } else {
+            $.ajax({
+                url : $('#url_search').val(),
+                method : 'post',
+                data: {
+                    form: $this.parent('form').serialize(),
+                    searchpro: searchProduct,
+                }
+            }).done(function(response){
+                $('#menu').replaceWith(response);
+            });
+       }
+        
+        
     });
+    
+
+    deleteProductEvent();
+
     /*Fonction pour cacher les marqueurs de GoogleMap et afficher uniquement celui du jour sélectionner. A ne pas effacer malgré le doublon dans le fichier map.php*/
     $('#selectDay').change(function(){
         markers.forEach( function(element, index) {
@@ -45,18 +74,16 @@ $(function(){
 
         markers[document.getElementById('selectDay').value].setMap(map);
     });
+    /*Fin de la fonction pour la map*/
+  /*Fonction pour l'éditeur de texte dans About côté Admin*/
+
+    tinymce.init({
+      selector: "textarea",  
+      plugins: "autosave",				/*Ajoute l'utilisation sauvegarde automatique*/
+      toolbar: "restoredraft",			/*Sauvegarde automatique*/
+      plugins: "textcolor",				/*Ajoute l'utilisation du choix de couleurs de texte*/
+      toolbar: "forecolor backcolor",	/*Ajoute le bouton de choix de couleurs pour le texte dans la toolbar*/
+    });/*Fin de la fonction pour l'éditeur de texte dans About côté Admin*/
 });
-/*Fin de la fonction pour la map*/
 
-
-/*Fonction pour l'éditeur de texte dans About côté Admin*/
-
-tinymce.init({
-  selector: "textarea",  
-  plugins: "autosave",				/*Ajoute l'utilisation sauvegarde automatique*/
-  toolbar: "restoredraft",			/*Sauvegarde automatique*/
-  plugins: "textcolor",				/*Ajoute l'utilisation du choix de couleurs de texte*/
-  toolbar: "forecolor backcolor",	/*Ajoute le bouton de choix de couleurs pour le texte dans la toolbar*/
-});
-/*Fin de la fonction pour l'éditeur de texte dans About côté Admin*/
 
