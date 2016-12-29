@@ -1,6 +1,4 @@
 <?php
-
-
 	
 	$w_routes = array(
 
@@ -26,4 +24,10 @@
 		['GET',			'/map',								'Default#map',							'default_map'],
 		['GET',			'/about',							'Default#about',						'default_about'],
 		['GET|POST',	'/contact',							'User#contact',							'user_contact'],
+    
+    
+	  ['GET|POST',	'/about-admin',						'Admin#aboutAdmin',			'user_about_admin'],
 );
+
+
+
