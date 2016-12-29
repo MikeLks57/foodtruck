@@ -378,7 +378,7 @@ EOT;
                 $errors['mail'] = 'Merci de renseigner votre email.';
             }
 
-
+$formValid = false;
     // Le formulaire est valide si je n'ai pas enregistré d'erreurs
         if (count($errors) == 0) {
             $formValid = true;
@@ -400,14 +400,15 @@ EOT;
 
 
 
-        if (isset($_POST['checkbox'])) {
-            $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
-            $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
-            /*Envoie une copie si la personne coche la checkbox*/
-            $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
-        }
+            if (isset($_POST['checkbox'])) {
+                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
+                $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
+                /*Envoie une copie si la personne coche la checkbox*/
+                $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
+            }
 
-        $this->show('contact', ['errors' => $errors]);
+            $this->show('contact', ['errors' => $errors, 'formValid' => $formValid]);
+
         }
 
         else {

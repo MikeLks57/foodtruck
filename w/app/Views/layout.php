@@ -18,6 +18,7 @@
   crossorigin="anonymous"></script>
 	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
   	<script src='https://www.google.com/recaptcha/api.js'></script>
+  	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
   	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 </head>
