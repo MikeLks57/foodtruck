@@ -93,8 +93,8 @@ class DefaultController extends Controller
 				/*ajoute l'id order et l'id produit dans la table order product*/
 				$addOrderProductModel = new order_productModel();
 				$orderProductModel = $addOrderProductModel->insert([
-				'id_order' => $id_order,
-				'id_product' => $id_product['id'],
+					'id_order' => $id_order,
+					'id_product' => $id_product['id'],
 				]);
 			
 				/*selectionne le dernier id ajouter dans la table order product*/
@@ -121,6 +121,20 @@ class DefaultController extends Controller
 		}
 	}
 
+	public function searchProduct()
+	{
+		if (isset($_POST['form'])) {
+		$ProductsModel = new ProductsModel();
+		$search = [
+				'name' => $_POST['searchpro'],
+			];
+		$productFind = $ProductsModel->search($search);
+		$this->show('default/displayMenu', ['allMenu' => $productFind]);	
+	} 	
+
+		/*, ['allCategory' => $category, 'allMenu' => $menu, 'allSupplement' => $supplements] );*/
+	}
+
 	public function slider()
 	{
 		$sliderModel = new sliderModel();
@@ -143,19 +157,6 @@ class DefaultController extends Controller
 		$this->show('about', ['about' => $about]);
 	}
 
-	public function map()
-	{
-		$mapModel= New mapModel();
-		$map = $mapModel->findAll();
-		$this->show('map', ['allMap' => $map]);
-	}
 
-	public function about()
-	{
-		$aboutModel= New InfosModel();
-
-		$about = $aboutModel->getInfo('about');
-		$this->show('about', ['about' => $about]);
-	}
 
 }
