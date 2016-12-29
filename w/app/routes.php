@@ -1,5 +1,6 @@
 <?php
 
+
 $w_routes = array(
 	['GET',			'/',								'Default#home',				'default_home'],
 	['GET',			'home',								'Default#home',				'default_home_bis'],
@@ -15,4 +16,13 @@ $w_routes = array(
 	['GET',			'/about',							'Default#about',			'default_about'],
 	['GET|POST',	'/contact',							'User#contact',				'user_contact'],
 	['GET|POST',	'/about-admin',						'Admin#aboutAdmin',			'user_about_admin'],
+
+	
+	['GET|POST',	'/menu/category/[i:id]',			'Default#displayMenu', 					'display_menu_category'],
+	['GET|POST',	'/add-product-supplement',			'Default#addProductSupplements', 		'add_product_supplement'],
+	['GET|POST',	'/menu',							'Default#addOrder', 					'add_order'],
+	['GET|POST',	'/menu/delete',							'Default#deleteProductSupplements', 	'delete_product_supplement'],		
+
+  ['GET',         '/admin-home',                      'Admin#home',               			'admin_home'],
+  
 );
