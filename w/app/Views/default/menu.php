@@ -93,45 +93,36 @@
 <div class="col-md-4">
 	<h2>Ma commande</h2>
 	<div>
+		<h1><?php echo $menu['name'] ?></h1>
+		<img src="<?php echo $this->assetUrl('uploads/img/'.$menu['picture']) ?>" alt="<?php echo $menu['name'] ?>">
+		<p><?php echo $menu['description'] ?></p>
+		<p>Prix : <?php echo $menu['price'] ?> €</p>
+		<button data-id="<?php echo $menu['id'] ?>">Ajouter au panier</button>
 		<form action="<?php echo $this->url('add_order') ?>" id="command" method="POST" accept-charset="utf-8">
-		
 			<?php if (isset($_SESSION['basket'])): ?>
-				
 				<?php foreach($_SESSION['basket'] as $nbProduct => $product) : ?>
-					
 					<ul>
 						<h3>
 						<?php echo $product['name_product'] ?> 
 							<button type="submit" name="delete" class="delete" data-id="<?php echo $nbProduct ?>" >X</button>
 						</h3>
-							
 						<?php foreach ($product['supplements'] as $supplement): ?>
-
 							<?php if ($supplement != '0'): ?>
-
-								<li> + <?php echo $supplement ?></li> 
-
+								<li> + <?php echo $supplement ?></li>
 							<?php endif ?>
-						
 						<?php endforeach ?>
 					</ul><br>
-					
 				<?php endforeach ; ?>
 				<?php if (isset($_SESSION['user'])){ ?>
 					<button type="submit" name="addOrder">Finaliser la commande</button>
 				<?php } else { ?>
 					<button><a href="<?php echo $this->url('user_login') ?>">Se connecter</a></button>
 				<?php } ?>
-				
 			<?php endif ?>
-
 		</form>
 	</div>
 </div>
 
 <div id="ok"></div>
 
-
-<?php /*unset($_SESSION['basket']['1']);*/ ?>
-<?php/* print_r($_SESSION['basket'])*/ ?>
 <?php $this->stop('main_content') ?>

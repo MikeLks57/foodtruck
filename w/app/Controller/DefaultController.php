@@ -10,10 +10,9 @@ use Model\SupplementsModel;
 use Model\OrdersModel;
 use Model\Order_productModel;
 use Model\Order_product_suppModel;
-use \W\Controller\Controller;
-use Model\sliderModel;
-use Model\mapModel;
-use Model\infosModel;
+use Model\SliderModel;
+use Model\MapModel;
+use Model\InfosModel;
 
 class DefaultController extends Controller
 {
@@ -33,22 +32,15 @@ class DefaultController extends Controller
 		// Il nous faut le modèle pour cela :
 		$categoryModel = new CategoriesModel();
 		$category = $categoryModel->findAll();
-
-	
 		// Récupère les différents menus
 		// Il nous faut le modèle pour cela :
 		$menuModel = new ProductsModel();
 		$menu = $menuModel->findProductsByCategory($idCategory);
-
 		// Récupère les différents supplements
 		// Il nous faut le modèle pour cela :
 		$supplementModel = new SupplementsModel();
 		$supplements = $supplementModel->findSupplementsByCategory($idCategory);
-
-
 		$this->show('menu', ['allCategory' => $category, 'allMenu' => $menu, 'allSupplement' => $supplements] );
-
-
 	}
 
 	public function addProductSupplements()
@@ -58,7 +50,6 @@ class DefaultController extends Controller
 			'supplements' => $_POST['supplement'],
 		];
 		$command = $_SESSION['basket'];
-
 		$this->show('default/displayOrder', ['command' => $command]);
 	}
 
@@ -140,7 +131,7 @@ class DefaultController extends Controller
 	{
 		$sliderModel = new sliderModel();
 		$slider = $sliderModel->findAll();
-		$this->show('slider', ['allSlider' => $slider]);
+		$this->show('default/slider', ['allSlider' => $slider]);
 	}
 
 	public function map()
@@ -157,7 +148,4 @@ class DefaultController extends Controller
 		$about = $aboutModel->getInfo('about');
 		$this->show('about', ['about' => $about]);
 	}
-
-
-
 }
