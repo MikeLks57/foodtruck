@@ -14,9 +14,15 @@
 		['GET',			'/logout',							'User#logout', 				'user_logout'],
 		['GET|POST',	'/sign-in',							'User#signin', 				'user_signin'],
 		['GET|POST',	'/user/password-recovery',			'User#passwordRecovery', 	'user_password_recovery'],
-		['GET|POST',	'/user/reset-password/[:token]',	'User#resetPassword', 		'user_rest_password'],
+		['GET|POST',	'/user/reset-password/[:token]',	'User#resetPassword', 		'user_reset_password'],
 		['GET|POST',	'/confirm-account/[:token]',		'User#confirm', 			'user_confirm_account'],
-        ['GET',         '/admin-home',                      'Admin#home',               'admin_home'],
+
+        ['GET|POST',         '/admin-home',                      'Admin#home',               'admin_home'],
+        ['GET|POST',    '/admin-slider',                    'Admin#displaySlider',      'admin_slider'],
+        ['POST',        '/admin-slider/pics',               'Admin#getSliderPicsAjax',  'admin_slider_pics'],
+        ['GET|POST',    '/admin-slider/add-pics',           'Admin#add',                'admin_slider_add'],
+        ['POST',        '/admin-slider/delete',             'Admin#deleteSliderPic',    'admin_slider_delete'],
+        ['GET',        '/admin-slider/count',             'Admin#countPicsSlider',    'admin_slider_count'],
 
 
 		['GET',			'/slider',							'Default#slider',			'default_slider'],

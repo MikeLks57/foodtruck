@@ -13,7 +13,7 @@
 <?php foreach ($allMenu as $menu): ?>
 	<div>
 		<h1><?php echo $menu['name'] ?></h1>
-		<img src="<?php echo $this->assetUrl('img/'.$menu['picture']) ?>" alt="<?php echo $menu['name'] ?>">
+		<img src="<?php echo $this->assetUrl('uploads/img/'.$menu['picture']) ?>" alt="<?php echo $menu['name'] ?>">
 		<p><?php echo $menu['description'] ?></p>
 		<p>Prix : <?php echo $menu['price'] ?> €</p>
 		<button data-id="<?php echo $menu['id'] ?>">Ajouter au panier</button>	

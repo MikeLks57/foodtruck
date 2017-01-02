@@ -14,6 +14,7 @@ class UserController extends Controller
 
     public function login()
     {
+        $user= $this->getUser();
         // Si on a essayé de se connecté
         if(isset($_POST['login'])) {
             $errors = [];
@@ -66,7 +67,7 @@ class UserController extends Controller
                 }
             }
         } else {
-            $this->show('user/login');
+            $this->show('user/login', ['user' => $user]);
         }
     }
 

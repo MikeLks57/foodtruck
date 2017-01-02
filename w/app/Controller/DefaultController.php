@@ -35,8 +35,7 @@ class DefaultController extends Controller
 		$menuModel = new ProductsModel();
 		$menu = $menuModel->findProductsByCategory($idCategory);
 
-		$this->show('menu', ['allCategory' => $category, 'allMenu' => $menu] );
-
+		$this->show('default/menu', ['allCategory' => $category, 'allMenu' => $menu] );
 
 	}
 
@@ -44,7 +43,7 @@ class DefaultController extends Controller
 	{
 		$sliderModel = new sliderModel();
 		$slider = $sliderModel->findAll();
-		$this->show('slider', ['allSlider' => $slider]);
+		$this->show('default/slider', ['allSlider' => $slider]);
 	}
 
 

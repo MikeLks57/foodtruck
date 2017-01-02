@@ -19,7 +19,7 @@
 <?php $this->start('main_content') ?>
 
     <nav>
-        <?php if(isset($_SESSION['user'])) : ?>
+        <?php if(!empty($user)) : ?>
             <h3>Vous n'avez pas accès à cette page lorsque vous êtes connecté !</h3>
         <?php endif ?>
         <a href="<?= $this->url('default_home') ?>">
@@ -28,9 +28,9 @@
     </nav>
     <br>
     <br>
-    <?php if(!isset($_SESSION['user'])) : ?>
+    <?php if(empty($user)) : ?>
         <div class="form-group">
-            <div  id="connectDiv" class="hidden">
+            <div  id="connectDiv">
                 <form action="<?= $this->url('user_login') ?>" method="post">
                     <input type="text" name="mail" placeholder="E-mail"><br><br>
                     <input type="password" name="pass" placeholder="Mot de passe"><br><br>

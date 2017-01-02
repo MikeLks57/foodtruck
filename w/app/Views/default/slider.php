@@ -2,11 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-
-
-
-
-
 <!-- carrousel bootstrap en js -->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -22,7 +17,7 @@
 		<?php $i=0; foreach ($allSlider as $slider): ?>
 			<!-- Boucle pour passer la class active uniquement à l'image 0 -->
 			<div class="item<?php if($i === 0) echo ' active' ?>">
-				<img src="<?= $slider['url'] ?>" alt="<?= $slider['title'] ?>">
+                <img src="<?php echo $this->assetUrl('uploads/img/'.$slider['url']) ?>" alt="<?php echo $slider['name'] ?>">
 				<div class="carousel-caption">
 					<h3><?= $slider['title'] ?></h3>
 					<p><?= $slider['description'] ?></p>
@@ -44,10 +39,5 @@
 </a>
 </div>
 <!-- Fin du caroussel -->
-
-
-
-
-
 
 <?php $this->stop('main_content') ?>

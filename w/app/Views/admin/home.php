@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Bienvenue dans votre panneau de configuration']) ?>
+<?php $this->layout('admin-layout', ['title' => 'Accueil Admin']) ?>
 
 <?php $this->start('main_content') ?>
 <h2>Let's code.</h2>
