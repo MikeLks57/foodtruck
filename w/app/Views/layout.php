@@ -45,72 +45,26 @@
             </div><!-- /.container-fluid -->
         </nav><!-- /.nav.navbar-default -->
     </header><!-- /.main-header -->
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- polices -->
 
-    <div class="container-main"></div>
-        <section>
-            <?= $this->section('messages') ?>
-        </section>
+	<!-- Bootstrap Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <section>
-            <?= $this->section('main_content') ?>
-        </section>
-    </div> <!-- <div class="container-main"> -->
+	<!-- Bootstrap Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <footer>
-        <div class="container-fluid footer-default">
-            <div class="row">
-                <div class="col-xs-12 col-md-5">
-                    <p>
-                        Inscrivez vous à notre newsletter<br>
-                        et recevez nos promotions en exclusivité
-                    </p>
-                    <p>
-                    <form action="#" method="POST">
-                        <input type="text" name="newsletter">
-                        <input type="submit" name="validNewsletter">
-                    </form>
-                    </p>
-                    <p>
-                        ©Pizz’Truck 2016
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <p>
-                        <a href="">Plan du site</a><br>
-                        <a href="">Accueil</a><br>
-                        <a href="">Carte</a><br>
-                        <a href="">Infos</a><br>
-                        <a href="">Contact</a><br>
-                        <a href="">Connexion</a><br>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <p>
-                        <a href="">Charte des réseaux sociaux</a><br>
-                        <a href="">Mentions légales</a><br>
-                        <a href="">CGU</a><br>
-                    </p>
-                    <p>
-                        /Icones Réseaux sociaux\
-                    </p>
-                </div>
-            </div><!-- <div class="row"> -->
-        </div><!-- <div class="container-fluid footer-default"> -->
-    </footer>
-</div><!-- <div class="container"> -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-<!-- Jquery 3.0.0 slim minified -->
-<script
-        src="https://code.jquery.com/jquery-3.0.0.slim.min.js"
-        integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0="
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
 
-<!-- Bootstrap Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Fichier Script JS -->
-<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
-
-</body>
-</html>
+</head>
+<body>
