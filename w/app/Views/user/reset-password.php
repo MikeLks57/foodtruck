@@ -7,7 +7,7 @@
             <h3>Vous n'avez pas accès à cette page lorsque vous êtes connecté !</h3>
         <?php endif ?>
         <a href="<?= $this->url('default_home') ?>">
-            < Retour à l'acceuil
+            < Retour à l'accueil
         </a>
     </nav>
 

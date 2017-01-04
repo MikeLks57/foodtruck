@@ -13,8 +13,8 @@ class MailerService
         $mail->isSMTP();                                      	// On va se servir de SMTP
         $mail->Host = 'smtp.gmail.com';  						// Serveur SMTP
         $mail->SMTPAuth = true;                               	// Active l'autentification SMTP
-        $mail->Username = 'wf3.mailer@gmail.com';             	// SMTP username
-        $mail->Password = '$NJ27^^4q7';                   		// SMTP password
+        $mail->Username = 'pizztruck@gmail.com';             	// SMTP username
+        $mail->Password = 'MikaNico';                   		// SMTP password
         $mail->SMTPSecure = 'tls';                            	// TLS Mode
         $mail->Port = 587;                                    	// Port TCP à utiliser
         $mail->CharSet = 'UTF-8';
@@ -38,7 +38,7 @@ class MailerService
 
         // $mail->SMTPDebug = 2;
 
-        $mail->setFrom('wf3.mail@gmail.com', 'Pizz\'Truck', false);
+        $mail->setFrom('pizztruck@gmail.com', 'Pizz\'Truck', false);
         $mail->addAddress($destAddress, $destName);     		// Ajouter un destinataire
 
         $mail->isHTML(true);                                  	 // Set email format to HTML

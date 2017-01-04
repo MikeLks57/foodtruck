@@ -3,9 +3,11 @@
 namespace Controller;
 
 use Model\SliderModel;
+use Twilio\Rest\Client;
 use \W\Controller\Controller;
 use \Service\ImageManagerService;
 use Model\AdminModel;
+use W\Model\UsersModel;
 
 
 class AdminController extends Controller
@@ -28,6 +30,7 @@ class AdminController extends Controller
 
     public function displaySlider()
     {
+        $this->allowTo('admin');
         $this->show('admin/slider');
     }
 
@@ -89,7 +92,7 @@ class AdminController extends Controller
                     $fileName = ''; // Le nom du fichier, sans le dossier
                     do {
                         $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
-                        $fullPath = 'assets/uploads/img/' . $fileName;
+                        $fullPath = 'assets/uploads/img/slider/' . $fileName;
                         $nbFiles++;
                     } while(file_exists($fullPath));
 
@@ -117,7 +120,7 @@ class AdminController extends Controller
                 $moved = move_uploaded_file($_FILES['my-file']['tmp_name'], $fullPath);
 
                 $miniFile = new ImageManagerService();
-                $miniFile->resize($fullPath, null, 140, 140, false, 'assets/uploads/slider/' . $fileName,  false);
+                $miniFile->resize($fullPath, null, 140, 140, false, 'assets/uploads/img/slider-mini/' . $fileName,  false);
 
                 // Ajouter si OK
                 $sliderModel->insert([
@@ -152,7 +155,7 @@ class AdminController extends Controller
                 $errors['my-logo'] = 'Merci de choisir un fichier';
             } else {
                 // Objet FileInfo
-                $finfo = new finfo(FILEINFO_MIME_TYPE);
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
 
                 // Récupération du Mime
                 $mimeType = $finfo->file($_FILES['my-logo']['tmp_name']);
@@ -223,4 +226,33 @@ class AdminController extends Controller
         $sliderPictures = $this->adminModel->delete($_POST['idPic']);
     }
 
+    public function searchUsers()
+    {
+        $this->allowTo('admin');
+        if (isset($_POST['form'])) {
+            $UserModel = new UsersModel();
+            $search = [
+                'username' => $_POST['searchUser'],
+            ];
+            $usersFind = $UserModel->search($search);
+            $this->show('admin/displayUsers', ['allUsers' => $usersFind]);
+        }
+    }
+
+    public function role()
+    {
+        $this->allowTo('admin');
+        $this->show('admin/role');
+    }
+
+    public function updateUser()
+    {
+        $usersModel = new UsersModel();
+        $errors = [];
+
+        $usersModel->update(
+            ['role' 	=> $_POST['role']],
+            $_POST['id']
+        );
+    }
 }

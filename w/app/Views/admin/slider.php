@@ -32,7 +32,7 @@
             <div class="alert alert-danger hide error file-sizeMax" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> L\'image doit mesurer moins de 800px de hauteur et 1500px de largeur <br>
             </div>
-            <div class="alert alert-danger hide error title-weightMin" role="alert">
+            <div class="alert alert-danger hide error file-weightMin" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> L\'image doit peser moins de 2mo <br>
             </div>
             <div class="alert alert-danger hide error file-weightMax" role="alert">
@@ -47,7 +47,7 @@
         </div><!-- <div class="col col-sm-12 hidden showErrors"> -->
     </div><!-- class="row" -->
 
-    <h1>Ajoutez des photos à votre Slider d'accueil :</h1>
+    <h2>Ajoutez des photos à votre Slider d'accueil :</h2>
     <form enctype="multipart/form-data" id="sliderForm" method="POST" accept-charset="utf-8">
 
         <div class="input-group">
@@ -61,9 +61,6 @@
         </div>
 
         Sélectionner votre image :<br>
-        <section class="errors">
-
-        </section>
         <label id="btnBrowse" class="btn btn-primary">
             Parcourir&hellip; <span class="glyphicon glyphicon-plus"></span> <input name="my-file" type="file" id="file">
         </label>
@@ -73,3 +70,7 @@
     </form>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('admin_script') ?>
+    <script src="<?= $this->assetUrl('js/admin_slider_script.js') ?>"></script>
+<?php $this->stop('admin_script') ?>
