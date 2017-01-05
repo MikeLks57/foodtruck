@@ -77,6 +77,9 @@ div#content_prod img {
 	margin: 10px;
 }
 
+.modal-footer{
+	text-align: center;
+}
 
 label, input { display:block; }
 input.text { margin-bottom:12px; width:95%; padding: .4em; }

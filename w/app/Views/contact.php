@@ -64,7 +64,17 @@ require_once '../vendor/autoload.php'; ?>
     <button type="submit" name="send_message" class="btn btn-default">Envoyer</button>
   </form>
   <!-- Fin du formulaire -->
+  <br><br>
+  <?php
 
+  if (isset($formValid) && $formValid)
+  {
+    echo "Votre message a bien été envoyé.";
+  }
+
+  ?>
+  <br><br>
+  
 </section>
 
 <?php $this->stop('main_content'); ?>

@@ -25,6 +25,11 @@ class DefaultController extends Controller
 		$this->show('default/home');
 	}
 
+	public function confirmOrder()
+	{
+		$this->show('confirmOrder');
+	}
+
 
 	public function displayMenu($idCategory = 1)
 	{
@@ -44,7 +49,6 @@ class DefaultController extends Controller
 		$supplementModel = new SupplementsModel();
 		$supplements = $supplementModel->findSupplementsByCategory($idCategory);
 
-
 		$this->show('menu', ['allCategory' => $category, 'allMenu' => $menu, 'allSupplement' => $supplements] );
 
 
@@ -55,6 +59,8 @@ class DefaultController extends Controller
 		$_SESSION['basket'] []= [
 			'name_product' => $_POST['nameProduct'],
 			'supplements' => $_POST['supplement'],
+			'priceProduct' => $_POST['price'],
+			'priceSupplement' => $_POST['supplement-price'],
 		];
 		$command = $_SESSION['basket'];
 
@@ -78,6 +84,7 @@ class DefaultController extends Controller
 			$addOrderModel = new ordersModel();
 			$orderModel = $addOrderModel->insert([
 				'id_user' 	=> $_SESSION['user']['id'],
+				'total' => $_POST['total'],
 			]);
 
 			/*selectionne le dernier id order ajouter dans la table order*/
@@ -93,8 +100,8 @@ class DefaultController extends Controller
 				/*ajoute l'id order et l'id produit dans la table order product*/
 				$addOrderProductModel = new order_productModel();
 				$orderProductModel = $addOrderProductModel->insert([
-				'id_order' => $id_order,
-				'id_product' => $id_product['id'],
+					'id_order' => $id_order,
+					'id_product' => $id_product['id'],
 				]);
 			
 				/*selectionne le dernier id ajouter dans la table order product*/
@@ -117,8 +124,22 @@ class DefaultController extends Controller
 					}
 				}
 			}
-			$this->redirectToRoute('display_menu');
+			unset($_SESSION['basket']);
+			$this->redirectToRoute('confirm_order');
+
 		}
+	}
+
+	public function searchProduct()
+	{
+		if (isset($_POST['form'])) {
+		$ProductsModel = new ProductsModel();
+		$search = [
+				'name' => $_POST['searchpro'],
+			];
+		$productFind = $ProductsModel->search($search);
+		$this->show('default/displayMenu', ['allMenu' => $productFind]);	
+		} 	
 	}
 
 	public function slider()
@@ -143,19 +164,6 @@ class DefaultController extends Controller
 		$this->show('about', ['about' => $about]);
 	}
 
-	public function map()
-	{
-		$mapModel= New mapModel();
-		$map = $mapModel->findAll();
-		$this->show('map', ['allMap' => $map]);
-	}
 
-	public function about()
-	{
-		$aboutModel= New InfosModel();
-
-		$about = $aboutModel->getInfo('about');
-		$this->show('about', ['about' => $about]);
-	}
 
 }

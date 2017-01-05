@@ -30,7 +30,7 @@
 			    	<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 			    		<ul class="nav navbar-nav">
 				        	<li class="active"><a href="<?= $this->url('default_home') ?>">Accueil<span class="sr-only">(current)</span></a></li>
-				        	<li><a href="">Carte</a></li>
+				        	<li><a href="<?= $this->url('display_menu') ?>">Carte</a></li>
 				        	<li><a href="">Infos</a></li>
 				        	<li><a href="">Contact</a></li>
 				        	<li><a href="">Connexion</a></li>
@@ -114,6 +114,5 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
   	<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
 	<?= $this->section('scripts') ?>
-
 </body>
 </html>
