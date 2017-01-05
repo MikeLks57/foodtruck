@@ -344,7 +344,7 @@ EOT;
                 $errors['lastname']['empty'] = true;
             }
             if (!empty($_POST['object'])) {
-                if (strlen($_POST['object']) < 4) {
+                if (strlen($_POST['object']) < 10) {
                     $errors['object'] = 'L\'objet doit comprendre au moins 10 caractères.';
                 }
             }
@@ -353,12 +353,12 @@ EOT;
                 $errors['object'] = 'Merci d\'indiquer l\'objet de votre message.';
             }
             if (!empty($_POST['textarea'])) {
-                if (strlen($_POST['textarea']) < 4) {
-                    $errors['textarea'] = 'Votre message doit comprendre au moins 50 caractères.';
+                if (strlen($_POST['textarea']) < 10) {
+                    $errors['textarea'] = 'Votre message doit comprendre au moins 10 caractères.';
                 }
             }
             else {
-    // Si on a pas précisé d'objet
+    // Si on a pas écris dans le textarea
                 $errors['textarea']['empty'] = true;
             }
 
@@ -374,24 +374,24 @@ EOT;
                 $errors['mail'] = 'Merci de renseigner votre email.';
             }
 
-
+$formValid = false;
     // Le formulaire est valide si je n'ai pas enregistré d'erreurs
-            if (count($errors) == 0) {
-                $formValid = true;
-            }
+        if (count($errors) == 0) {
+            $formValid = true;
+        }
 
-            $adminMail = 'lenajilian76@hotmail.fr';
-            $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
-            $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
+        $adminMail = 'lenajilian76@hotmail.fr';
+        $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
+        $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
 
 
 
 
             /*Envoie le mail à l'administrateur*/
-            if ($formValid) {
-                $myMailer = new MailerService();
-                $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
-            }
+        if ($formValid = true) {
+            $myMailer = new MailerService();
+            $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
+        }
 
 
 
@@ -399,12 +399,12 @@ EOT;
             if (isset($_POST['checkbox'])) {
                 $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
                 $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
-                echo $_POST['mail'];
                 /*Envoie une copie si la personne coche la checkbox*/
                 $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
             }
 
-            $this->show('contact', ['errors' => $errors]);
+            $this->show('contact', ['errors' => $errors, 'formValid' => $formValid]);
+
         }
 
         else {

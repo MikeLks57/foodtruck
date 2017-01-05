@@ -3,6 +3,7 @@
 namespace Controller;
 
 
+use \W\Controller\Controller;
 use Model\ProductsModel;
 use Model\CategoriesModel;
 use Model\SupplementsModel;
@@ -133,12 +134,12 @@ class DefaultController extends Controller
 	public function searchProduct()
 	{
 		if (isset($_POST['form'])) {
-		$ProductsModel = new ProductsModel();
-		$search = [
-				'name' => $_POST['searchpro'],
-			];
-		$productFind = $ProductsModel->search($search);
-		$this->show('default/displayMenu', ['allMenu' => $productFind]);	
+			$ProductsModel = new ProductsModel();
+			$search = [
+					'name' => $_POST['searchpro'],
+				];
+			$productFind = $ProductsModel->search($search);
+			$this->show('default/displayMenu', ['allMenu' => $productFind]);	
 		} 	
 	}
 
@@ -163,7 +164,4 @@ class DefaultController extends Controller
 		$about = $aboutModel->getInfo('about');
 		$this->show('about', ['about' => $about]);
 	}
-
-
-
 }
