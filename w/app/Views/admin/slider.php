@@ -7,8 +7,10 @@
     <input type="hidden" id="countSliderPicsRoute" value="<?= $this->url('admin_slider_count') ?>" />
 
     <div class="row">
-        <div class="col col-sm-12 showImg">
+        <div class="col col-sm-12 ">
+            <div class="row showImg">
             <!-- Zone d'affichage des images ajoutées en BDD -->
+            </div>
         </div>
     </div>
 
@@ -59,18 +61,21 @@
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-menu-right"></span></span>
             <input type="text" name="description" class="form-control" placeholder="Description de votre photo" aria-describedby="sizing-addon1">
         </div>
+        <section class="errors">
 
-        Sélectionner votre image :<br>
-        <label id="btnBrowse" class="btn btn-primary">
-            Parcourir&hellip; <span class="glyphicon glyphicon-plus"></span> <input name="my-file" type="file" id="file">
+        </section>
+
+        <h3><span class=" label label-default">Sélectionner votre image :</span></h3>
+        <label id="btnBrowse" class="btn btn-default">
+            Parcourir <span class="glyphicon glyphicon-plus"></span> <input name="my-file" type="file" id="file">
         </label>
 
         <input type="hidden" name="send-file"/>
-        <input type="submit" class="btn btn-infos" id="submit-file" value="Envoyer le fichier" />
+        <input type="submit" class="btn btn-primary" id="submit-file" value="Ajouter" />
     </form>
 
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('admin_script') ?>
-    <script src="<?= $this->assetUrl('js/admin_slider_script.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/admin_slider_script.js') ?>"></script>
 <?php $this->stop('admin_script') ?>

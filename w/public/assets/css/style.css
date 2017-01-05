@@ -31,44 +31,6 @@ html, body {
 	color: #FFFFFF;
 }
 
-
-/* footer */
-
-div.container-fluid.footer-default {
-	margin-top: 20px;
-	background-color: #890709;
-}
-
-/* produits */
-
-div.row.productsDisplay {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-div#content_prod {
-	display: flex;
-	flex-wrap: wrap;
-	border: 2px solid red;
-}
-
-div#content_prod.row {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	background-color: yellow;
-	padding-right: 10px;
-}
-
-div#content_prod div.col-xs-12.col-md-3 {
-	display: flex;
-}
-
-div#content_prod img {
-	display: flex;
-	margin: 10px;
-}
-
 .navbar-default .navbar-nav>li>a {
 	color: #FFFFFF;
 }
@@ -91,6 +53,13 @@ h2 {
 #map {
 	width: 400px;
 	height: 600px;
+}
+
+/* LOGIN */
+.input-group {
+	margin: 2rem 0 2rem 0;
+	min-width: 35%;
+	max-width: 150px;
 }
 
 /* footer */

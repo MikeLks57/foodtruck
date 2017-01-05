@@ -1,5 +1,5 @@
 <?php
-	$w_routes = array(
+$w_routes = array(
         ['GET', 		'/', 								'Default#home', 			            'default_home'],
         ['GET',			'/home',							'Default#home', 			            'default_home_bis'],
         ['GET',			'/slider',							'Default#slider',						'default_slider'],
@@ -11,7 +11,7 @@
         ['GET|POST',	'/add-product-supplement',			'Default#addProductSupplements', 		'add_product_supplement'],
         ['GET|POST',	'/menu/delete',						'Default#deleteProductSupplements', 	'delete_product_supplement'],
         ['GET|POST',	'/menu/search',						'Default#searchProduct', 				'search_product'],
-
+    
         ['GET|POST',	'/login',							'User#login', 				            'user_login'],
         ['GET',			'/logout',							'User#logout', 				            'user_logout'],
         ['GET|POST',	'/sign-in',							'User#signin', 				            'user_signin'],
@@ -20,7 +20,7 @@
         ['GET|POST',	'/confirm-account/[:token]',		'User#confirm', 			            'user_confirm_account'],
         ['GET|POST',	'/contact',							'User#contact',							'user_contact'],
         ['GET|POST',    '/account',                         'User#account',                         'user_account'],
-
+    
         ['GET',         '/admin-home',                      'Admin#home',                           'admin_home'],
         ['GET|POST',    '/admin-slider',                    'Admin#displaySlider',                  'admin_slider'],
         ['POST',        '/admin-slider/pics',               'Admin#getSliderPicsAjax',              'admin_slider_pics'],
@@ -31,5 +31,6 @@
         ['GET|POST',	'/admin-search',					'Admin#searchUsers', 				    'admin_search_user'],
         ['GET',			'/admin-role',						'Admin#role', 		                    'admin_display_role'],
         ['GET|POST',	'/admin-update-user',	            'Admin#updateUser', 		            'admin_update_role'],
+        ['POST',	    '/admin-send-message',	            'Admin#sentSmsCommand', 		        'admin_send_message'],
 
-    );
+);

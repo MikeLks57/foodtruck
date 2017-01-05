@@ -1,4 +1,3 @@
-
 function deleteProductEvent(){
     $('.delete').click(function(e){
         e.preventDefault();

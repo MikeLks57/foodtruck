@@ -1,17 +1,18 @@
+
 <?php $this->layout('admin-layout', ['title' => 'Gestion utilisateur']) ?>
 
 <?php $this->start('main_content') ?>
 
-    <input type="hidden" id="url_search_user" value="<?php echo $this->url('admin_search_user') ?>">
-    <input type="hidden" id="updateRole" value="<?= $this->url('admin_update_role') ?>">
+<input type="hidden" id="url_search_user" value="<?php echo $this->url('admin_search_user') ?>">
+<input type="hidden" id="updateRole" value="<?= $this->url('admin_update_role') ?>">
 
-    <h2>Gérer le rôle de vos utilisateurs</h2>
+<h1>Gérer le rôle de vos utilisateurs</h1>
 
-    <form class="navbar-form center-block" name="search" method="POST">
-        <div class="form-group" id="form-group">
-            <input type="text" id="searchUser" class="form-control search" placeholder="Trouver un utilisateur">
-        </div>
-    </form>
+<form class="navbar-form center-block" name="search" method="POST">
+    <div class="form-group" id="form-group">
+        <input type="text" id="searchUser" class="form-control search" placeholder="Trouver un utilisateur">
+    </div>
+</form>
 
 <div class="row">
     <div class="col col-sm-12">
@@ -23,15 +24,15 @@
         </div>
     </div><!-- <div class="col col-sm-12"> -->
 </div><!-- class="row" -->
-    <div class="row">
-        <div class="col-xs-12 col-md-5" id="usersFind">
-            <!-- Zone d'affichage des utilisateurs trouvés par la recherche admin -->
-        </div>
-    </div>
 
+<div class="row">
+    <div class="col-xs-12 col-md-5" id="usersFind">
+        <!-- Zone d'affichage des utilisateurs trouvés par la recherche admin -->
+    </div>
+</div>
 
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('admin_script') ?>
-    <script src="<?= $this->assetUrl('js/admin_user_script.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/admin_user_script.js') ?>"></script>
 <?php $this->stop('admin_script') ?>

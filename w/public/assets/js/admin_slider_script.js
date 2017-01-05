@@ -16,8 +16,7 @@ function refreshSliderPictures()
         var allSliderPics = "";
         r.sliderPictures.forEach(function(pics, key){
             allSliderPics +=  '<div class="col col-xs-12 col-sm-3 divImg">' + '<img src="assets/uploads/img/slider-mini/' + pics.url + '" alt="' + pics.description + '" class="' + 'col-xs-12 img-thumbnail">'
-                + '<input type="checkbox"' + 'class="checkImg"' + 'data-id="' + pics.id + '">' +
-                '<span class="glyphicon glyphicon-remove alert-danger deleteImg"' + 'data-id="' + pics.id + '" data-url="' + pics.url + '"aria-hidden="' + 'true"></span>' + '</img></div>'
+                + '<span class="glyphicon glyphicon-remove deleteImg text-danger"' + 'data-id="' + pics.id + '" data-url="' + pics.url + '"aria-hidden="' + 'true"></span>' + '</img></div>'
         });
         $("div.showImg").html(allSliderPics);
     });
@@ -76,13 +75,13 @@ function uploadFile()
         });
     });
 }
+
 function changeClassBtnBrowse()
 {
     $('#btnBrowse').on('change', function(e){
         e.preventDefault();
         $('.glyphicon').removeClass('glyphicon-plus');
         $('.glyphicon').addClass('glyphicon-ok');
-
     })
 }
 
