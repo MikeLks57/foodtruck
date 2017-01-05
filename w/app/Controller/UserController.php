@@ -385,20 +385,14 @@ $formValid = false;
         $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
         $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
 
-
-
-
             /*Envoie le mail à l'administrateur*/
         if ($formValid = true) {
             $myMailer = new MailerService();
             $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
         }
 
-
-
-
             if (isset($_POST['checkbox'])) {
-                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
+                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site <br><br>' . $object . '<br>' . $textarea;
                 $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
                 /*Envoie une copie si la personne coche la checkbox*/
                 $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);

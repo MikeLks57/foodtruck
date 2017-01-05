@@ -25,7 +25,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
+                <li class="sidebar-brand zoom">
                     <a href="<?= $this->url('admin_home') ?>">
                        <h1 class="h1Menu">Bonjour, <?= $_SESSION["user"]['username']; ?></h1>
                     </a>
@@ -80,11 +80,11 @@
 </div><!-- <div class="container"> -->
 
 
-<footer class="navbar navbar-default navbar-fixed-bottom">
+<footer class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid footer-default text-center">
-        <h6>
-            ©Pizz’Truck 2016
-        </h6>
+        <h4 class="text-info">
+            Pizz’Truck 2016 <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+        </h4>
     </div><!-- <div class="container-fluid footer-default"> -->
 </footer>
 <!-- Jquery 3.1.1 slim minified -->

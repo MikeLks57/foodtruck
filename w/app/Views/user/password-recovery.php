@@ -3,7 +3,7 @@
 <?php $this->start('main_content') ?>
 
     <nav>
-        <?php if(!empty($user)) : ?>
+        <?php if(!empty($_SESSION['user'])) : ?>
             <h3>Vous n'avez pas accès à cette page lorsque vous êtes connecté !</h3>
         <?php endif ?>
         <a class="btn btn-default" href="<?= $this->url('default_home') ?>">

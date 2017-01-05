@@ -14,11 +14,29 @@ h1, h2, h3, h4, h5, h6 {
 .h1Menu {
     color: rgb(255, 255, 255);
 }
+
+.zoom {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.zoom:hover {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+    M11=1.2, M12=-0, M21=0, M22=1.2);
+}
 /* Toggle Styles */
 
 #menu-toggle {
     margin-bottom: 3rem;
+    width: 50px;
 }
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -209,9 +227,11 @@ footer {
 input#file {
     display: none;
 }
-
+.btn-default,
 .btn-primary,
 .btn-success {
+    display: block;
+    width: 100px;
     margin: 2rem 0 2rem 0;
 }
 

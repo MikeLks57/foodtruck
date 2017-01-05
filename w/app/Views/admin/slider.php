@@ -66,13 +66,13 @@
 
         </section>
 
-        <h4><span class=" label label-default">Sélectionner votre image :</span></h4>
+        <h3><span class=" label label-default">Sélectionner votre image :</span></h3>
         <label id="btnBrowse" class="btn btn-default">
             Parcourir <span class="glyphicon glyphicon-plus"></span> <input name="my-file" type="file" id="file">
         </label>
 
         <input type="hidden" name="send-file"/>
-        <input type="submit" class="btn btn-primary" id="submit-file" value="Envoyer le fichier" />
+        <input type="submit" class="btn btn-primary" id="submit-file" value="Ajouter" />
     </form>
 
 <?php $this->stop('main_content') ?>
