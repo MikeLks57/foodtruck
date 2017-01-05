@@ -3,81 +3,102 @@
 <?php $this->start('main_content') ?>
 
     <nav>
-        <?php if(isset($_SESSION['user'])) : ?>
+        <?php if(!empty($_SESSION['user'])) : ?>
             <h3>Vous n'avez pas accès à cette page lorsque vous êtes connecté !</h3>
         <?php endif ?>
-        <a href="<?= $this->url('default_home') ?>">
-            < Retour à l'acceuil
+        <a class="btn btn-default" href="<?= $this->url('default_home') ?>">
+            < Retour à l'accueil
         </a>
     </nav>
 
 
 <?php if(!isset($_SESSION['user'])) : ?>
-    <dialog open style= " text-align: center;">
+
+    <h2>Formulaire d'inscription</h2>
         <form action="#" method="POST">
 
             <fieldset>
                 <?php if(isset($errors['pseudo']['empty'])) : ?>
-                    <p style= 'color : red'>Votre pseudo est vide</p>
+                    <p class="text-danger">Votre pseudo est vide</p>
                 <?php endif ?>
                 <?php if(isset($errors['pseudo']['exist'])) : ?>
-                    <p style= 'color : red'>Ce pseudo est déjà pris</p>
+                    <p class="text-danger">Ce pseudo est déjà pris</p>
                 <?php endif ?>
-                <p>Pseudo : <input type="text" name="pseudo"></p>
-            </fieldset>
-            <fieldset>
-
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" name="pseudo" class="form-control" placeholder="Choisir un pseudo" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['lastname']['empty'])) : ?>
-                    <p style= 'color : red'>Remplir votre nom</p>
+                    <span class="glyphicon glyphicon-hand-right">
+                        <p class="text-danger">Remplir votre nom</p>
+                    </span>
+
                 <?php endif ?>
-                <p>Nom: <input type="text" name="lastname"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-menu-right"></span></span>
+                    <input type="text" name="lastname" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['firstname']['empty'])) : ?>
-                    <p style= 'color : red'>Remplir votre prénom</p>
+                    <p class="text-danger">Remplir votre prénom</p>
                 <?php endif ?>
-                <p>Prénom: <input type="text" name="firstname"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-menu-right"></span></span>
+                    <input type="text" name="firstname" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['phone']['empty'])) : ?>
-                    <p style= 'color : red'>Remplir votre numéro de téléphone portable</p>
+                    <p class="text-danger">Remplir votre numéro de téléphone portable</p>
                 <?php endif ?>
                 <?php if(isset($errors['phone']['invalid'])) : ?>
-                    <p style= 'color : red'>Remplir avec un numéro de téléphone portable (06 ou 07)</p>
+                    <p class="text-danger">Remplir avec un numéro de téléphone portable (06 ou 07)</p>
                 <?php endif ?>
-                <p>N° Port.: <input type="tel" name="phone" pattern="[0-9]{10}"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-phone"></span></span>
+                    <input type="tel" name="phone" pattern="[0-9]{10}" class="form-control" placeholder="N° de téléphone portable" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['mail']['empty'])) : ?>
-                    <p style= 'color : red'>Remplir votre adresse mail</p>
+                    <p class="text-danger">Remplir votre adresse mail</p>
                 <?php endif ?>
                 <?php if(isset($errors['mail']['bad'])) : ?>
-                    <p style= 'color : red'>Remplir avec une adresse mail valide</p>
+                    <p class="text-danger">Remplir avec une adresse mail valide</p>
                 <?php endif ?>
                 <?php if(isset($errors['mail']['exist'])) : ?>
-                    <p style= 'color : red'>Ce pseudo est déjà pris</p>
+                    <p class="text-danger">Ce pseudo est déjà pris</p>
                 <?php endif ?>
-                <p>Votre adresse email : <input type="text" name="mail"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+                    <input type="text" name="mail" class="form-control" placeholder="Adresse email" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['password']['empty'])) : ?>
-                    <p style= 'color : red'>Remplir le mot de passe</p>
+                    <p class="text-danger">Remplir le mot de passe</p>
                 <?php endif ?>
-                <p>Mot de passe: <input type="password" name="password"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1">
+                </div>
 
                 <?php if(isset($errors['password2']['empty'])) : ?>
-                    <p style= 'color : red'>Confirmer votre mot de passe</p>
+                    <p class="text-danger">Confirmer votre mot de passe</p>
                 <?php endif ?>
                 <?php if(isset($errors['confirmPass'])) : ?>
-                    <p style= 'color : red'>La confirmation ne correspond pas à votre mot de passe.</p>
+                    <p class="text-danger">La confirmation ne correspond pas à votre mot de passe.</p>
                 <?php endif ?>
-                <p>Confirmer mot de passe: <input type="password" name="password2"></p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="password2" class="form-control" placeholder="Confirmer votre mot de passe" aria-describedby="sizing-addon1">
+                </div>
                 <br>
                 <?php if(isset($errors['captcha']['check'])) : ?>
-                    <p style= 'color : red'>Veuillez vérifier votre humanité.</p>
+                    <p class="text-danger">Veuillez vérifier votre humanité.</p>
                 <?php endif ?>
                 <div class="g-recaptcha" data-sitekey="6LcFdA8UAAAAAJOeg7RqXtyYLrm2GkdiSE3wjm3O"></div>
             </fieldset>
-            <button type="submit" name="add-user">S'inscrire</button>
+            <button type="submit" name="add-user" class="btn btn-default">S'inscrire</button>
         </form>
-    </dialog>
 <?php endif ?>
 
 <?php $this->stop('main_content') ?>

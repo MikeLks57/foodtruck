@@ -8,6 +8,17 @@ use PDO;
 
 class ProductsModel extends Model
 {
+	public function findProductsByCategory($id)
+	{
+		$pdo = ConnectionModel::getDbh();
+		$sql = 'SELECT products.id, products.name, products.description, products.price, products.picture, products.id_category FROM products INNER JOIN categories ON categories.id = products.id_category WHERE categories.id = :id';
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+	}
+	
 	public function getAllProductsByIdCategory($idCategory)
 	{
 		$pdo = ConnectionModel::getDbh();
@@ -18,7 +29,6 @@ class ProductsModel extends Model
 		return $products->fetchAll();
 	}
 
-
 	public function getIdProductByName($name)
 	{
 		$pdo = ConnectionModel::getDbh();
@@ -27,12 +37,10 @@ class ProductsModel extends Model
 		$stmt->execute();
 		return $stmt->fetch();
 	}
-}
 
 	public function getIngredientsByProduct($idProduct)
 	{
 		$sql = 'SELECT ingredients.name as ingredients, products.name as productName FROM ingredients INNER JOIN ingredients_product ON ingredients_product.id_ingredient = ingredients.id AND ingredients_product.id_product = products.id WHERE id_product = :idProduct'; 
 	}
-
 }
 

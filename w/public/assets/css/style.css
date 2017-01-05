@@ -7,13 +7,28 @@ html, body {
 
 .container {
 	width: 100%;
-	margin-top: 10px;
-	margin: 10px, 50px, 10px;
+	padding: 0;
+	margin: 10px 50px 10px;
 }
 
 .navbar-default {
 	background-color: #890709;
 	background-image: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	color: #FFFFFF;
+	background-image: none;
+	background-color: #890709;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	text-decoration: underline;
+	color: #FFFFFF;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -38,6 +53,13 @@ h2 {
 #map {
 	width: 400px;
 	height: 600px;
+}
+
+/* LOGIN */
+.input-group {
+	margin: 2rem 0 2rem 0;
+	min-width: 35%;
+	max-width: 150px;
 }
 
 /* footer */
@@ -76,7 +98,6 @@ div#content_prod img {
 	display: flex;
 	margin: 10px;
 }
-
 
 label, input { display:block; }
 input.text { margin-bottom:12px; width:95%; padding: .4em; }

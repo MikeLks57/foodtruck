@@ -15,6 +15,7 @@ class UserController extends Controller
 
     public function login()
     {
+        $user= $this->getUser();
         // Si on a essayé de se connecté
         if(isset($_POST['login'])) {
             $errors = [];
@@ -32,7 +33,7 @@ class UserController extends Controller
             $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
             $responseKeys = json_decode($response,true);
             if(intval($responseKeys["success"]) !== 1 ) {
-                echo '<h2>You are a F$%K&¤G ROBOT ! Get the @$%K out</h2>';
+                echo '<h2>You are a ROBOT ! Get the @$%K out</h2>';
             } else {
                 $authModel = new AuthentificationModel();
                 $userModel = new UsersModel();
@@ -57,17 +58,14 @@ class UserController extends Controller
                         } else {
                             $this->redirectToRoute('default_home');
                         }
-
                     }
-
                 } else {
-
                     // Echec de la connexion
                     $this->show('user/login', ['error' => true]);
                 }
             }
         } else {
-            $this->show('user/login');
+            $this->show('user/login', ['user' => $user]);
         }
     }
 
@@ -99,14 +97,14 @@ class UserController extends Controller
 <h1>Réinitialisation de votre mot de passe</h1>
 Quelqu'un a demandé la réinitialisation de votre mot de passe.<br>
 <a href="$resetUrl">Cliquez ici</a> pour finaliser l'opération<br>
-Si vous n'êtes pas à l'origine de ce mail, bla bla bla..
+Si vous n'êtes pas à l'origine de ce mail, veuillez nous contacter via la page Contact sur notre site.<br>
 EOT;
 
                 $messagePlain =<<< EOT
 Réinitialisation de votre mot de passe
 Quelqu'un a demandé la réinitialisation de votre mot de passe.
 Accédez à $resetUrl pour finaliser l'opération
-Si vous n'êtes pas à l'origine de ce mail, bla bla bla..
+Si vous n'êtes pas à l'origine de ce mail, veuillez nous contacter via la page Contact sur notre site.
 EOT;
 
 
@@ -183,7 +181,8 @@ EOT;
         $usersModel = new UsersModel();
         $authModel = new AuthentificationModel();
 
-        if(isset($_POST['add-user'])) {
+        if(isset($_POST['add-user']))
+        {
 
             $errors = [];
             $confirm =[];
@@ -192,58 +191,70 @@ EOT;
             $pattern = '/^[0][6-7]{1}[0-9]{7}[0-9]$/';
 
 
-            if(empty($_POST['pseudo'])) {
+            if(empty($_POST['pseudo']))
+            {
                 $errors['pseudo']['empty'] = true;
             }
             if($nameExist){
                 $errors['pseudo']['exist'] = true;
             }
-            if(empty($_POST['lastname'])) {
+            if(empty($_POST['lastname']))
+            {
                 $errors['lastname']['empty'] = true;
             }
-            if(empty($_POST['firstname'])) {
+            if(empty($_POST['firstname']))
+            {
                 $errors['firstname']['empty'] = true;
             }
-            if(empty($_POST['phone'])) {
+            if(empty($_POST['phone']))
+            {
                 $errors['phone']['empty'] = true;
             }
-            if(preg_match( $pattern , $_POST['phone'])){
+            if(preg_match( $pattern , $_POST['phone']))
+            {
                 $phone = $_POST['phone'];
             } else{
                 $errors['phone']['invalid'] = true;
             }
-            if(empty($_POST['mail'])) {
+            if(empty($_POST['mail']))
+            {
                 $errors['mail']['empty'] = true;
             }
-            if($mailExist) {
+            if($mailExist)
+            {
                 $errors['mail']['exist'] = true;
             }
             elseif(!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                 $errors['mail']['bad'] = true;
             }
-            if(empty($_POST['password'])) {
+            if(empty($_POST['password']))
+            {
                 $errors['password']['empty'] = true;
             }
-            if(empty($_POST['password2'])) {
+            if(empty($_POST['password2']))
+            {
                 $errors['password2']['empty'] = true;
             }
-            elseif($_POST['password2'] != $_POST['password']) {
+            elseif($_POST['password2'] != $_POST['password'])
+            {
                 $errors['confirmPass'] = true ;
             }
-            if(isset($_POST['g-recaptcha-response'])){
+            if(isset($_POST['g-recaptcha-response']))
+            {
                 $captcha=$_POST['g-recaptcha-response'];
             }
             if(!$captcha)
             {
                 $errors['captcha']['check'] = true;
             }
-            else{
+            else
+            {
                 $secretKey = "6LeX2Q4UAAAAAN7qkqbeLzu-u1hK_PV3dsgqusLE";
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
                 $responseKeys = json_decode($response,true);
                 if(intval($responseKeys["success"]) !== 1) {
-                    echo '<h2>You are a F$%K&¤G ROBOT ! Get the @$%K out</h2>';
+                    echo '<h2>You are a ROBOT ! Get the @$%K out</h2>';
                 } else {
                     if(count($errors) === 0) {
                         // Ajouter si OK
@@ -258,7 +269,8 @@ EOT;
                     }
                 }
             }
-            if(count($errors) === 0) {
+            if(count($errors) === 0)
+            {
                 // Ajouter si OK
                 $usersModel->insert([
                     'username' 	=> $_POST['pseudo'],
@@ -267,27 +279,61 @@ EOT;
                     'phone' => $phone,
                     'mail' 	=> $_POST['mail'],
                     'password' 	=> $authModel->hashpassword($_POST['password']),
-                    'role' => 'user',
                 ]);
                 $this->confirmAccount($_POST['mail']);
                 $this->redirectToRoute('user_login');
             }
             $this->show('user/signin', ['errors' => $errors, 'confirm' => $confirm]);
-        }
-
-        else {
+        } else {
             // Sinon, afficher le formulaire
             $this->show('user/signin');
         }
     }
 
+    private function accountModif($mail)
+    {
+        $userModel = new UsersModel();
+            $user = $userModel->getUserByUsernameOrEmail($mail);
+            if(!empty($user)) {
+
+                // Envoyer un mail
+                $resetUrl = 'http://127.0.0.1:8080' . $this->generateUrl('user_contact');
+
+                $messageHtml =<<< EOT
+<h1>Modification de vos informations</h1>
+Quelqu'un a modifié vos informations personnelles.<br>
+Connectez-vous à votre compte pour voir vos nouvelles informations.
+Si vous n'êtes pas à l'origine de ce mail, veuillez nous contacter via notre page <a href="$resetUrl">Contact</a>.<br>
+
+<h4>Pizz'Truck</4>
+EOT;
+
+                $messagePlain =<<< EOT
+Modification de vos informations
+Quelqu'un a modifié vos informations personnelles.
+Connectez-vous à votre compte pour voir vos nouvelles informations.
+Accédez à $resetUrl si vous n'êtes pas à l'origine de ce mail,
+pour nous contacter.
+
+Pizz'Truck
+EOT;
+
+
+                $mymailer = new MailerService();
+                $mymailer->sendMail($user['mail'], $user['name'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
+
+                $this->redirectToRoute("user_account");
+            }
+    }
     private function confirmAccount($email)
     {
         $tokenModel = new ConfirmtokensModel();
         $userModel = new UsersModel();
-        if (isset($_POST['add-user'])) {
+        if (isset($_POST['add-user']))
+        {
             $user = $userModel->getUserByUsernameOrEmail($email);
-            if (!empty($user)) {
+            if (!empty($user))
+            {
                 // Ajouter un token
                 $token = \W\Security\StringUtils::randomString(32);
                 $tokenModel->insert([
@@ -320,11 +366,8 @@ EOT;
         }
     }
 
-
-/*Pour la page contact*/
-
-
-    public function contact() { 
+    public function contact()
+    {
 
         if (isset($_POST['send_message'])) {
             $errors = array();
@@ -348,7 +391,7 @@ EOT;
                 $errors['lastname']['empty'] = true;
             }
             if (!empty($_POST['object'])) {
-                if (strlen($_POST['object']) < 4) {
+                if (strlen($_POST['object']) < 10) {
                     $errors['object'] = 'L\'objet doit comprendre au moins 10 caractères.';
                 }
             }
@@ -357,12 +400,12 @@ EOT;
                 $errors['object'] = 'Merci d\'indiquer l\'objet de votre message.';
             }
             if (!empty($_POST['textarea'])) {
-                if (strlen($_POST['textarea']) < 4) {
-                    $errors['textarea'] = 'Votre message doit comprendre au moins 50 caractères.';
+                if (strlen($_POST['textarea']) < 10) {
+                    $errors['textarea'] = 'Votre message doit comprendre au moins 10 caractères.';
                 }
             }
             else {
-    // Si on a pas précisé d'objet
+    // Si on a pas écris dans le textarea
                 $errors['textarea']['empty'] = true;
             }
 
@@ -378,37 +421,31 @@ EOT;
                 $errors['mail'] = 'Merci de renseigner votre email.';
             }
 
+        $formValid = false;
+        // Le formulaire est valide si je n'ai pas enregistré d'erreurs
+        if (count($errors) == 0) {
+            $formValid = true;
+        }
 
-    // Le formulaire est valide si je n'ai pas enregistré d'erreurs
-            if (count($errors) == 0) {
-                $formValid = true;
-            }
-
-            $adminMail = 'lenajilian76@hotmail.fr';
-            $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
-            $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
-
-
-
+        $adminMail = 'lenajilian76@hotmail.fr';
+        $messageHtml = '<h1>' . $lastname . '</h1> vous a envoyer le message suivant :<br>' . $textarea;
+        $messagePlain = $lastname . ' vous a envoyer le message suivant :' . $textarea;
 
             /*Envoie le mail à l'administrateur*/
-            if ($formValid) {
-                $myMailer = new MailerService();
-                $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
-            }
-
-
-
+        if ($formValid = true) {
+            $myMailer = new MailerService();
+            $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
+        }
 
             if (isset($_POST['checkbox'])) {
-                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
+                $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site <br><br>' . $object . '<br>' . $textarea;
                 $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
-                echo $_POST['mail'];
                 /*Envoie une copie si la personne coche la checkbox*/
                 $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
             }
 
-            $this->show('contact', ['errors' => $errors]);
+            $this->show('contact', ['errors' => $errors, 'formValid' => $formValid]);
+
         }
 
         else {
@@ -417,5 +454,73 @@ EOT;
         }
     }
 
+    public function account()
+    {
+        $this->allowTo('user');
+        $usersModel = new UsersModel();
+        $authModel = new AuthentificationModel();
 
+        if(isset($_POST['update-password']))
+        {
+
+            $errors = [];
+            $id = $_SESSION['user']['id'];
+            $pattern = '/^[0][6-7]{1}[0-9]{7}[0-9]$/';
+
+            if(empty($_POST['phone']))
+            {
+                $errors['phone']['empty'] = true;
+            }
+            if(preg_match( $pattern , $_POST['phone']))
+            {
+                $phone = $_POST['phone'];
+            } else{
+                $errors['phone']['invalid'] = true;
+            }
+            if(empty($_POST['password']))
+            {
+                $errors['password']['empty'] = true;
+            }
+            if(empty($_POST['password2']))
+            {
+                $errors['password2']['empty'] = true;
+            }
+            elseif($_POST['password2'] != $_POST['password'])
+            {
+                $errors['confirmPass'] = true ;
+            }
+            if(isset($_POST['g-recaptcha-response']))
+            {
+                $captcha=$_POST['g-recaptcha-response'];
+            }
+            if(!$captcha)
+            {
+                $errors['captcha']['check'] = true;
+            }
+            else
+            {
+                $secretKey = "6LeX2Q4UAAAAAN7qkqbeLzu-u1hK_PV3dsgqusLE";
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+                $responseKeys = json_decode($response,true);
+                if(intval($responseKeys["success"]) !== 1) {
+                    echo '<h2>You are a ROBOT ! Get the @$%K out</h2>';
+                }
+            }
+            if(count($errors) === 0) {
+                // Ajouter si OK
+                $usersModel->update([
+                    'phone' 	=> $_POST['phone'],
+                    'password' 	=> $authModel->hashpassword($_POST['password']),
+                    'role' => 'user',
+                ], $id);
+                $this->accountModif($_SESSION['user']['mail']);
+                $this->redirectToRoute('user_account');
+            }
+            $this->show('user/account', ['errors' => $errors]);
+        } else {
+            // Sinon, afficher le formulaire
+            $this->show('user/account');
+        }
+    }
 }

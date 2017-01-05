@@ -19,8 +19,4 @@
 	    </section><!-- main-section -->
 	</main>
 
-	
-	
-	
-
 <?php $this->stop('main_content') ?>
