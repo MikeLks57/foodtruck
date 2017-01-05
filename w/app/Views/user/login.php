@@ -22,21 +22,26 @@
         <?php if(!empty($user)) : ?>
             <h3>Vous n'avez pas accès à cette page lorsque vous êtes connecté !</h3>
         <?php endif ?>
-        <a href="<?= $this->url('default_home') ?>">
-            < Retour à l'accueil
-        </a>
+            <a class="btn btn-default" href="<?= $this->url('default_home') ?>">
+                 < Retour à l'accueil
+            </a>
     </nav>
-    <br>
-    <br>
+
     <?php if(empty($user)) : ?>
         <div class="form-group">
             <div  id="connectDiv">
                 <form action="<?= $this->url('user_login') ?>" method="post">
-                    <input type="text" name="mail" placeholder="E-mail"><br><br>
-                    <input type="password" name="pass" placeholder="Mot de passe"><br><br>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-menu-right"></span></span>
+                        <input type="text" name="mail" class="form-control" placeholder="E-mail" aria-describedby="sizing-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-menu-right"></span></span>
+                        <input type="password" name="pass" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1">
+                    </div>
                     <div class="g-recaptcha" data-sitekey="6LcFdA8UAAAAAJOeg7RqXtyYLrm2GkdiSE3wjm3O"></div>
                     <br><br>
-                    <button type="submit" name="login">Connexion</button>
+                    <button type="submit" name="login" class="btn btn-info">Connexion</button>
                 </form>
             </div>
         </div>

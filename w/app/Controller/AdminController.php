@@ -3,9 +3,11 @@
 namespace Controller;
 
 use Model\SliderModel;
+use Twilio\Rest\Client;
 use \W\Controller\Controller;
 use \Service\ImageManagerService;
 use Model\AdminModel;
+use W\Model\UsersModel;
 
 
 class AdminController extends Controller
@@ -28,6 +30,7 @@ class AdminController extends Controller
 
     public function displaySlider()
     {
+        $this->allowTo('admin');
         $this->show('admin/slider');
     }
 
@@ -89,7 +92,7 @@ class AdminController extends Controller
                     $fileName = ''; // Le nom du fichier, sans le dossier
                     do {
                         $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
-                        $fullPath = 'assets/uploads/img/' . $fileName;
+                        $fullPath = 'assets/uploads/img/slider/' . $fileName;
                         $nbFiles++;
                     } while(file_exists($fullPath));
 
@@ -117,7 +120,7 @@ class AdminController extends Controller
                 $moved = move_uploaded_file($_FILES['my-file']['tmp_name'], $fullPath);
 
                 $miniFile = new ImageManagerService();
-                $miniFile->resize($fullPath, null, 140, 140, false, 'assets/uploads/slider/' . $fileName,  false);
+                $miniFile->resize($fullPath, null, 140, 140, false, 'assets/uploads/img/slider-mini/' . $fileName,  false);
 
                 // Ajouter si OK
                 $sliderModel->insert([
@@ -152,7 +155,7 @@ class AdminController extends Controller
                 $errors['my-logo'] = 'Merci de choisir un fichier';
             } else {
                 // Objet FileInfo
-                $finfo = new finfo(FILEINFO_MIME_TYPE);
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
 
                 // Récupération du Mime
                 $mimeType = $finfo->file($_FILES['my-logo']['tmp_name']);
@@ -223,4 +226,76 @@ class AdminController extends Controller
         $sliderPictures = $this->adminModel->delete($_POST['idPic']);
     }
 
+    public function searchUsers()
+    {
+        $this->allowTo('admin');
+        if (isset($_POST['form'])) {
+            $UserModel = new UsersModel();
+            $search = [
+                'username' => $_POST['searchUser'],
+            ];
+            $usersFind = $UserModel->search($search);
+            $this->show('admin/displayUsers', ['allUsers' => $usersFind]);
+        }
+    }
+
+    public function role()
+    {
+        $this->allowTo('admin');
+        $this->show('admin/role');
+    }
+
+    public function updateUser()
+    {
+        $usersModel = new UsersModel();
+        $errors = [];
+
+        $usersModel->update(
+            ['role' 	=> $_POST['role']],
+            $_POST['id']
+        );
+    }
+    public function order(){
+        $this->allowTo('admin');
+        $this->show('admin/order');
+    }
+
+    public function sentSmsCommand()
+    {
+        // Step 2: set our AccountSid and AuthToken from https://twilio.com/console
+        $AccountSid = "AC3d93538f75c6c5d653af473dfaa9d66f";
+        $AuthToken = "b8bdda66b0467aee1448dc9128f4029a";
+
+        // Step 3: instantiate a new Twilio Rest Client
+        $client = new Client($AccountSid, $AuthToken);
+
+        // Step 4: make an array of people we know, to send them a message.
+        // Feel free to change/add your own phone number and name here.
+        $people = array(
+            "+33668222962" => "Nicolas Grimm"
+        );
+
+        // Step 5: Loop over all our friends. $number is a phone number above, and
+        // $name is the name next to it
+        foreach ($people as $number => $name) {
+
+            $sms = $client->account->messages->create(
+
+            // the number we are sending to - Any phone number
+                $number,
+
+                array(
+                    // Step 6: Change the 'From' number below to be a valid Twilio number
+                    // that you've purchased
+                    'from' => "+33756798518",
+
+                    // the sms body
+                    'body' => "Bonjour $name, Votre commande est en préparation, elle sera prête d'ici 20min. Vous pouvez d'hors et déjà venir. Pizz'Truck ! Ne pas répondre, message automatique"
+                )
+            );
+
+            // Display a confirmation message on the screen
+            echo json_encode(['result' => "success"]);
+        }
+    }
 }
