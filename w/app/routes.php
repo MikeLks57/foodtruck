@@ -10,7 +10,6 @@
 		['GET',			'/menu',							'Default#displayMenu', 					'display_menu'],
 		['POST',		'/menu',							'Default#addOrder', 					'add_order'],
 		['GET|POST',	'/menu/category/[i:id]',			'Default#displayMenu', 					'display_menu_category'],
-		['POST',		'/menu',							'Default#addOrder', 					'add_order'],
 		['GET|POST',	'/add-product-supplement',			'Default#addProductSupplements', 		'add_product_supplement'],
 		['GET|POST',	'/menu/delete',						'Default#deleteProductSupplements', 	'delete_product_supplement'],	
 		['GET|POST',	'/menu/search',						'Default#searchProduct', 				'search_product'],
@@ -40,4 +39,3 @@
         ['GET|POST',	'/order',	                    	'Admin#displayOrder', 		            'admin_order'],
 		['GET|POST',	'/admin-delete-order',	            'Admin#deleteOrder', 		        	'admin_delete_order'],
 );
-	

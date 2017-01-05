@@ -10,7 +10,6 @@ use Model\SupplementsModel;
 use Model\OrdersModel;
 use Model\Order_productModel;
 use Model\Order_product_suppModel;
-use \W\Controller\Controller;
 use Model\sliderModel;
 use Model\mapModel;
 use Model\infosModel;
