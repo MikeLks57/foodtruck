@@ -1,12 +1,6 @@
- <?php 
+ <?php  $this->layout('layout') ?>
 
-//hérite du fichier layout.php à la racine de app/templates/
- $this->layout('layout')
- ?>
-
- <?php 
-//début du bloc main_content
- $this->start('main_content'); ?>
+ <?php $this->start('main_content'); ?>
 
 
 

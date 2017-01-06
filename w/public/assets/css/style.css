@@ -1,3 +1,6 @@
+/* font-family: 'Catamaran', sans-serif; -> pour le texte
+font-family: 'Amatic SC', cursive; -> pour les titres */
+
 html, body {
 	font-family: Consolas, monaco, monospace;
 	color: black;
@@ -7,13 +10,66 @@ html, body {
 
 .container {
 	width: 100%;
-	margin-top: 10px;
-	margin: 10px, 50px, 10px;
+	padding: 0;
+	margin: 10px 50px 10px;
 }
 
 .navbar-default {
 	background-color: #890709;
 	background-image: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	color: #FFFFFF;
+	background-image: none;
+	background-color: #890709;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+
+/* footer */
+
+div.container-fluid.footer-default {
+	margin-top: 20px;
+	background-color: #890709;
+}
+
+/* produits */
+
+div.row.productsDisplay {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div#content_prod {
+	display: flex;
+	flex-wrap: wrap;
+	border: 2px solid red;
+}
+
+div#content_prod.row {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	background-color: yellow;
+	padding-right: 10px;
+}
+
+div#content_prod div.col-xs-12.col-md-3 {
+	display: flex;
+}
+
+div#content_prod img {
+	display: flex;
+	margin: 10px;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -77,6 +133,33 @@ div#content_prod img {
 	margin: 10px;
 }
 
+h1.founded{
+	text-align: center;
+	font-size: 45px;
+}
+
+div.notFound  {
+	background-image: linear-gradient(60deg,#E56C00, #FBAD23);
+	background-position: center center;
+	display: block;
+	text-align: center;
+}
+
+
+/* Partie contact public */
+section.contact {
+	display: block;
+}
+
+section label.formulaire, section#check, section#textarea, section#inputObject, section#inputEmail, section#inputLastname {
+	font-family: 'Catamaran', sans-serif;
+	width: 100%;
+	margin: auto;
+}
+
+section#check {
+	float: left;
+}
 
 label, input { display:block; }
 input.text { margin-bottom:12px; width:95%; padding: .4em; }

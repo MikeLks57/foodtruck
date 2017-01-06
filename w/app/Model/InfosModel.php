@@ -15,4 +15,23 @@ class InfosModel extends Model
 		$infos->execute();
 		return $infos->fetchColumn(0);
 	}
+
+	public function getOption()
+    {
+    	$pdo = ConnectionModel::getDbh();
+        $stmt = $pdo->query('SELECT * FROM infos');
+        return $stmt->fetch();
+    }
+
+    public function updateOption($logo, $about)
+    {
+        $pdo = ConnectionModel::getDbh();
+
+        $sql = 'UPDATE infos SET logo = :logo, about = :about ';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':logo', $logo);
+        $stmt->bindParam(':about', $about);
+        $stmt->execute();
+    }
+
 }

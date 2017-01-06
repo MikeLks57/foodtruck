@@ -15,6 +15,7 @@ class UserController extends Controller
 
     public function login()
     {
+        $user= $this->getUser();
         // Si on a essayé de se connecté
         if(isset($_POST['login'])) {
             $errors = [];
@@ -67,7 +68,7 @@ class UserController extends Controller
                 }
             }
         } else {
-            $this->show('user/login');
+            $this->show('user/login', ['user' => $user]);
         }
     }
 
@@ -293,7 +294,7 @@ EOT;
                 $tokenModel->insert([
                     'id_user' => $user['id'],
                     'token' => $token,
-                ]);
+                    ]);
 
                 // Envoyer un mail
                 $confirmAccount = 'http://127.0.0.1:8080'.$this->generateUrl('user_confirm_account', ['token' => $token]);
@@ -320,10 +321,6 @@ EOT;
         }
     }
 
-
-/*Pour la page contact*/
-
-
     public function contact() { 
 
         if (isset($_POST['send_message'])) {
@@ -345,10 +342,10 @@ EOT;
             }
             else {
     // Si on a pas précisé d'objet
-                $errors['lastname']['empty'] = true;
+                $errors['lastname'] = 'Merci de préciser votre nom';
             }
             if (!empty($_POST['object'])) {
-                if (strlen($_POST['object']) < 4) {
+                if (strlen($_POST['object']) < 10) {
                     $errors['object'] = 'L\'objet doit comprendre au moins 10 caractères.';
                 }
             }
@@ -357,13 +354,13 @@ EOT;
                 $errors['object'] = 'Merci d\'indiquer l\'objet de votre message.';
             }
             if (!empty($_POST['textarea'])) {
-                if (strlen($_POST['textarea']) < 4) {
-                    $errors['textarea'] = 'Votre message doit comprendre au moins 50 caractères.';
+                if (strlen($_POST['textarea']) < 10) {
+                    $errors['textarea'] = 'Votre message doit comprendre au moins 10 caractères.';
                 }
             }
             else {
-    // Si on a pas précisé d'objet
-                $errors['textarea']['empty'] = true;
+    // Si on a pas écris dans le textarea
+                $errors['textarea'] = 'Merci de préciser un message';
             }
 
             if (!empty($_POST['mail'])) {
@@ -378,8 +375,8 @@ EOT;
                 $errors['mail'] = 'Merci de renseigner votre email.';
             }
 
-
-    // Le formulaire est valide si je n'ai pas enregistré d'erreurs
+            $formValid = false;
+        // Le formulaire est valide si je n'ai pas enregistré d'erreurs
             if (count($errors) == 0) {
                 $formValid = true;
             }
@@ -392,7 +389,7 @@ EOT;
 
 
             /*Envoie le mail à l'administrateur*/
-            if ($formValid) {
+            if ($formValid == true) {
                 $myMailer = new MailerService();
                 $myMailer->sendMail($adminMail, $lastname, $object, $messageHtml, $messagePlain);
             }
@@ -403,19 +400,17 @@ EOT;
             if (isset($_POST['checkbox'])) {
                 $messageHtml = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . '<br>' . $textarea;
                 $messagePlain = 'Le message suivant a été envoyé à l\'administrateur du site' . $object . $textarea;
-                echo $_POST['mail'];
                 /*Envoie une copie si la personne coche la checkbox*/
                 $myMailer->sendMail($_POST['mail'], $lastname, $object, $messageHtml, $messagePlain);
             }
 
-            $this->show('contact', ['errors' => $errors]);
+            $this->show('user/contact', ['errors' => $errors, 'formValid' => $formValid]);
+
         }
 
         else {
         // Sinon, afficher le formulaire
-            $this->show('contact');
+            $this->show('user/contact');
         }
     }
-
-
 }
