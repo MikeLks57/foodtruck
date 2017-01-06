@@ -37,7 +37,21 @@ function addProductEvent(){
             $('#command').html(r);
             deleteProductEvent();
         });
-    });
+    });       
+}
+
+function priceSupplement(){
+    $('select.supplement').on('change', function(e){
+        var optionPrice = 0;
+        $('select.supplement').each(function(){
+            if( $(this).find('option:selected').data('price') !== undefined) {
+                optionPrice += $(this).find('option:selected').data('price');
+            }
+
+        })
+        console.log(optionPrice);
+        $('#supplement-price').val( optionPrice )
+    });    
 }
 
 function searchProduct(){
@@ -46,8 +60,8 @@ function searchProduct(){
         var searchProduct = $('#search').val();
 
         if (searchProduct == "") {
-            document.location.href="/foodtruck/w/public/menu";
-        } else {
+           document.location.href="/foodtruck/w/public/menu";
+       } else {
             $.ajax({
                 url : $('#url_search').val(),
                 method : 'post',
@@ -58,9 +72,16 @@ function searchProduct(){
             }).done(function(response){
                 $('#menu').replaceWith(response);
             });
-        }
+       }  
     });
 }
+
+/*Fonction pour cacher les marqueurs de GoogleMap et afficher uniquement celui du jour sélectionner. A ne pas effacer malgré le doublon dans le fichier map.php*/
+$('#selectDay').change(function(){
+    markers.forEach( function(element, index) {
+        element.setMap(null);
+    });
+})
 
 function map()
 {
@@ -72,13 +93,12 @@ function map()
 
         markers[document.getElementById('selectDay').value].setMap(map);
     });
-    /*Fin de la fonction pour la map*/
-
 }
+/*Fin de la fonction pour la map*/
 
-$(document).ready(function()
-{
+$(document).ready(function(){
     deleteProductEvent();
+    priceSupplement();
     addProductEvent();
     searchProduct();
     map();

@@ -15,6 +15,7 @@
 
 </head>
 <body>
+
 <div class="container">
     <header class="main-header">
         <nav class="navbar navbar-default">
@@ -30,7 +31,7 @@
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?= $this->url('default_home') ?>">Accueil<span class="sr-only">(current)</span></a></li>
-                        <li><a href="">Carte</a></li>
+                        <li><a href="<?= $this->url('display_menu') ?>">Carte</a></li>
                         <li><a href="">Infos</a></li>
                         <li><a href="">Contact</a></li>
                         <?php if(!isset($_SESSION['user'])) : ?>

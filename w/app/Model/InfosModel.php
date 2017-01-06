@@ -23,5 +23,4 @@ class InfosModel extends Model
 		$stmt->execute();
 		return $stmt->fetch()['value'];
 	}
-
 }

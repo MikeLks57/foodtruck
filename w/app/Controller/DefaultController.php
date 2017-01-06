@@ -14,6 +14,7 @@ use Model\SliderModel;
 use Model\MapModel;
 use Model\InfosModel;
 
+
 class DefaultController extends Controller
 {
 
@@ -23,6 +24,11 @@ class DefaultController extends Controller
 	public function home()
 	{
 		$this->show('default/home');
+	}
+
+	public function confirmOrder()
+	{
+		$this->show('confirmOrder');
 	}
 
 
@@ -40,6 +46,7 @@ class DefaultController extends Controller
 		// Il nous faut le modèle pour cela :
 		$supplementModel = new SupplementsModel();
 		$supplements = $supplementModel->findSupplementsByCategory($idCategory);
+
 		$this->show('menu', ['allCategory' => $category, 'allMenu' => $menu, 'allSupplement' => $supplements] );
 	}
 
@@ -48,6 +55,8 @@ class DefaultController extends Controller
 		$_SESSION['basket'] []= [
 			'name_product' => $_POST['nameProduct'],
 			'supplements' => $_POST['supplement'],
+			'priceProduct' => $_POST['price'],
+			'priceSupplement' => $_POST['supplement-price'],
 		];
 		$command = $_SESSION['basket'];
 		$this->show('default/displayOrder', ['command' => $command]);
@@ -70,6 +79,7 @@ class DefaultController extends Controller
 			$addOrderModel = new OrdersModel();
 			$orderModel = $addOrderModel->insert([
 				'id_user' 	=> $_SESSION['user']['id'],
+				'total' => $_POST['total'],
 			]);
 
 			/*selectionne le dernier id order ajouter dans la table order*/
@@ -109,7 +119,9 @@ class DefaultController extends Controller
 					}
 				}
 			}
-			$this->redirectToRoute('display_menu');
+			unset($_SESSION['basket']);
+			$this->redirectToRoute('confirm_order');
+
 		}
 	}
 
@@ -123,6 +135,7 @@ class DefaultController extends Controller
 		$productFind = $ProductsModel->search($search);
 		$this->show('default/displayMenu', ['allMenu' => $productFind]);	
 	    }
+
 	}
 
 	public function slider()

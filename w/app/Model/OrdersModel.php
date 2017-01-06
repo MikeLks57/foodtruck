@@ -17,4 +17,14 @@ class OrdersModel extends Model
 		return $id_order->fetchColumn(0);
 	}
 
+	public function updateOrder($id, $date_begin)
+	{
+		$pdo = ConnectionModel::getDbh();
+		$sql = 	'UPDATE orders SET date_begin = :date_begin WHERE id = :id';
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindparam(':id', $id);
+		$stmt->bindparam(':date_begin', $date_begin);
+		$stmt->execute();
+	}
+
 }

@@ -46,7 +46,7 @@
                     <a href="<?= $this->url('admin_display_role') ?>">Utilisateurs</a>
                 </li>
                 <li>
-                    <a href="">Vos commandes</a>
+                    <a href="<?= $this->url('admin_order') ?>">Vos commandes</a>
                 </li>
                 <li>
                     <a id="disconnect" href="<?= $this->url('user_logout') ?>">Déconnexion</a>
@@ -70,6 +70,7 @@
                         <section>
                             <?= $this->section('main_content') ?>
                         </section>
+
                     </div>
                 </div>
             </div>

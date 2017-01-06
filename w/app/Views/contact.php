@@ -13,6 +13,7 @@ require_once '../vendor/autoload.php'; ?>
   <!-- Formulaire de contact -->
   <form method="POST" action="#" class="form-inline">
    <!-- Nom -->
+
    <div class="form-group">
     <label for="exampleInputName">Nom</label>
     <input type="text" name="lastname" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
@@ -74,7 +75,7 @@ if (isset($formValid) && $formValid)
 
 ?>
 <br><br>
-
+  
 </section>
 
 <?php $this->stop('main_content'); ?>
