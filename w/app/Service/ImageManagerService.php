@@ -7,7 +7,11 @@ class ImageManagerService
 
     /**
      * Resizes An Image
+<<<<<<< HEAD
      *
+=======
+     * 
+>>>>>>> RenduFinal
      * @param  $file - file name to resize
      * @param  $string - The image data, as a string
      * @param  $width - new image width

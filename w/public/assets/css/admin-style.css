@@ -1,3 +1,13 @@
+/* --------------------------------------------------------- */
+                    /* Partie admin */
+/* --------------------------------------------------------- */
+
+
+                    /* ------------------ */
+                        /* Admin-menu */
+                    /* ------------------ */
+                    
+
 html, body {
     font-family: 'Catamaran', sans-serif;
     margin: 0;
@@ -234,14 +244,275 @@ input#file {
     display: none;
 }
 
-.btn-default,
+/* .btn-default,
 .btn-primary,
 .btn-success {
     display: block;
     width: 100px;
     margin: 2rem 0 2rem 0;
-}
+} */
 
 .btnModalUsers {
     margin-bottom: 50px;
 }
+
+
+/* Affichage des catégories réorganisables */
+
+/* div.categoriesList{
+    border: 2px solid black;
+} */
+
+/* style global de la liste non ordonné */
+ul#list-categories, ul#list-nonClasses, ul#list-noVisible{
+  list-style:none;
+  padding: 0;
+  font-family: 'Ranchers', cursive;
+}
+
+/* Style de la div de rajout de catégorie */
+div.addCategoryIcon#addCategoryIcon{
+    border:5px solid #ddd;
+    border-radius: 10px;
+    padding:10px;
+    cursor:pointer;
+    height:50px;
+    width:60%;
+    background:#fff;
+    text-align: center;
+    color:#212326;
+    font-size:12px;
+    -moz-box-shadow:2px 2px 5px #ccc;
+}
+
+/* style des éléments de la liste */
+ul#list-categories li.categoryContainer, ul#list-nonClasses li.categoryContainer, ul#list-noVisible li.categoryContainer{
+    border:1px solid #ddd;
+    padding-bottom: 40px;
+    height:50px;
+    width:80%;
+    background:#fff;
+    color: white;
+    font-size:20px;
+    text-shadow: -1px 0 black, 0 3px black,
+    3px 0 black, 0 -1px black;
+    box-shadow: 1px 1px 12px #555;
+    border-radius: 10px;
+    background-image:linear-gradient(60deg, #890709, white);
+}
+
+ul#list-categories li.categoryContainer{
+    cursor:move;
+}
+
+/* Style de la div entourant les éléments de la liste */
+.panel-default {
+    border: 0px;
+}
+
+/* Curseur sur les éléments trash, pencil et seeMoreProduct */
+.addCategory, .deleteCategory, .seeMoreProducts {
+    cursor: pointer!important;
+}
+
+/* style du glyphicon d'affichage des produits */
+.seeMoreProducts, .seeMoreProducts:hover, .seeMoreProducts:focus, .seeMoreProducts:active{
+    text-decoration: none;
+    color: #cccccc;
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    13.
+    -moz-transition: all 1s ease; /* Firefox */
+    14.
+    -o-transition: all 1s ease; /* IE 9 */
+    15.
+    -ms-transition: all 1s ease; /* Opera */
+    16.
+    transition: all 1s ease;
+    17.
+    max-width: 100%;
+}
+
+a.glyphicon.glyphicon-menu-down, span.glyphicon.glyphicon-pencil, span.glyphicon.glyphicon-trash, span.glyphicon.glyphicon-pause, span.glyphicon.glyphicon-play, span.glyphicon.glyphicon-star-empty{
+    color: #4D4B4B;
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    13.
+    -moz-transition: all 1s ease; /* Firefox */
+    14.
+    -o-transition: all 1s ease; /* IE 9 */
+    15.
+    -ms-transition: all 1s ease; /* Opera */
+    16.
+    transition: all 1s ease;
+    17.
+    max-width: 100%;
+}
+
+a.glyphicon.glyphicon-menu-down:hover, span.glyphicon.glyphicon-pencil:hover, span.glyphicon.glyphicon-trash:hover, span.glyphicon.glyphicon-pause:hover, span.glyphicon.glyphicon-play:hover, span.glyphicon.glyphicon-star-empty:hover {
+    color: #808080;
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    22.
+    -moz-transform:scale(1.25); /* Firefox */
+    23.
+    -ms-transform:scale(1.25); /* IE 9 */
+    24.
+    -o-transform:scale(1.25); /* Opera */
+    25.
+    transform:scale(1.5);
+}
+
+span.glyphicon.glyphicon-trash:hover{
+    color: red;
+}
+
+span.glyphicon.glyphicon-pencil:hover{
+    color: green;
+}
+
+/* Style de la div accordéon invisible */
+div.panel-collapse{
+    width: 100%;
+    border:1px solid #ddd;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* Style de l'icone de rajout de produit dans l'accordéon */
+span.glyphicon.glyphicon-plus.addProductBdd{
+    cursor: pointer;
+}
+
+/* Fin affichage des catégories réorganisables */
+
+
+
+/* Affichage des produits */
+
+/* Style des containers de produits */
+ul.list-products { 
+    list-style-type: none; 
+    margin: 10px 0px; 
+    padding: 10px 5px; 
+    width: 100%;
+    text-align: center;
+}
+
+li.productItem{
+    display: block;
+    width: calc( 100% - 10px );
+    cursor: move;
+    margin: 5px;
+    padding: 10px;
+}
+
+/* Style de l'élément non visible en menu front */
+.noVisible{
+    border: 2px solid red;
+}
+
+@media(min-width: 480px){
+    li.productItem{
+        width: calc( 50% - 10px );
+        float: left;
+    }
+}
+
+@media(min-width: 768px){
+    li.productItem{
+        width: calc( 33% - 10px );
+    }   
+}
+
+@media(min-width: 1024px){
+    li.productItem{
+        width: calc( 25% - 10px );
+    }   
+}
+
+.modal-footer{
+    text-align: center;
+}
+
+div.boutonsSuppModif{
+    /* border: 1px solid green!important; */
+    width: 100%;
+    height: 20px;
+}
+
+
+/* Affichage des infos produits */
+div.globalContentInfos{
+    text-align: center;
+}
+
+button.close.pencil.productsUpdate{
+    display: inline-block;
+    /* border: 1px solid red; */
+}
+
+span.glyphicon.glyphicon-folder-open:hover{
+    color: green;
+}
+
+div.productName, div.productPicture, div.productDescription, div.productIngredients, div.productPrice, div.productCategory {
+    /* border: 1px solid black; */
+    line-height: 2em;
+}
+
+.input-group {
+    margin: 2rem 0 2rem 0;
+    min-width: 35%;
+    max-width: 150px;
+}
+
+fieldset.formFieldset{
+    margin-top: 20px!important;
+    margin-bottom: 20px!important;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+div#activateProd .btn-success{
+    margin: 0!important;
+}
+
+/* Fin du formulaire d'ajout de produit */
+
+/* Affichage de l'autocomplétion des ingrédients */
+.ui-autocomplete { 
+    position: absolute; 
+    cursor: default;
+    z-index:10000 !important;
+}
+
+.form-horizontal {
+  margin-top: 10px;
+}
+
+/* Fin affichage des produits */
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Amatic SC', cursive;
+    color: #890709;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#map {
+    width: 400px;
+    height: 600px;
+}
+
+label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+div#users-contain { width: 350px; margin: 20px 0; }
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }

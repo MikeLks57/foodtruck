@@ -37,6 +37,34 @@
         ['GET|POST',	'/admin-update-user',	            'Admin#updateUser', 		            'admin_update_role'],
         ['GET|POST',	'/admin-send-message',	            'Admin#sentSmsCommand', 		        'admin_send_message'],
         ['GET|POST',	'/order',	                    	'Admin#displayOrder', 		            'admin_order'],
+
+		['GET|POST',	'/about-admin',						'Admin#aboutAdmin',						'user_about_admin'],
 		['GET|POST',	'/admin-delete-order',	            'Admin#deleteOrder', 		        	'admin_delete_order'],
+		['GET',		'/admin-menu',							'Default#displayAdminMenuPage',		'display_admin_menu_page'],
+		['GET',		'/admin-menu/categories',							'Default#getCategoriesAjax',		'get_categories'],
+
+		['POST',		'/admin-menu/reorganise_categories',							'Default#reorganiseCategories',		'admin-menu_reorganise_categories'],
+		['POST',		'/admin-menu/addCategory',							'Default#addCategory',		'admin-menu_add_category'],
+		['POST',		'/admin-menu/deleteCategory',							'Default#deleteCategory',		'admin-menu_delete_category'],
+		['POST',		'/admin-menu/updateCategory',							'Default#updateCategory',		'admin-menu_update_category'],
+		['POST',		'/admin-menu/addProduct',							'Default#addProduct',		'admin-menu_add_product'],
+		['GET',		'/admin-menu/getIngredients',							'Default#getIngredientsAjax',		'admin-menu_get_ingredients_ajax'],
+		['GET',		'/admin-menu/getProductsByIdCat',							'Default#getProductsByIdCatAjax',		'admin-menu_get_products_by_idCat_ajax'],
+		['GET',		'/admin-menu/getProductsByVisibility',							'Default#getProductsByVisibilityAjax',		'admin-menu_get_products_by_visibility_ajax'],
+		['POST',		'/admin-menu/reorganise_products',							'Default#reorganiseProducts',		'admin-menu_reorganise_products'],
+		['POST',		'/admin-menu/deleteProduct',							'Default#deleteProduct',		'admin-menu_delete_product'],
+		['POST',		'/admin-menu/deleteProductNonClasse',							'Default#deleteProductNonClasse',		'admin-menu_delete_product_non_classe'],
+		['POST',		'/admin-menu/deleteProductNoVisible',							'Default#deleteProductNoVisible',		'admin-menu_delete_product_no_visible'],
+		['POST',		'/admin-menu/updateProduct',							'Default#updateProduct',		'admin-menu_update_product'],
+		['POST',		'/admin-menu/sleepProduct',							'Default#sleepProduct',		'admin-menu_sleep_product'],
+		['POST',		'/admin-menu/displayProduct',							'Default#displayProduct',		'admin-menu_visibility_product'],
+		['GET',		'/admin-menu/getInfosByIdProd',							'Default#getInfosByIdProdAjax',		'admin-menu_get_infos_by_idProd_ajax'],
+		['GET',		'/admin-menu/getProductsNonClasses',							'Default#getProductsNonClassesAjax',		'admin-menu_non_classes_product'],
+		
+		['GET',		'/home/getHighlightProduct',							'Default#getHighlightProductsAjax',		'get_highlight_products_ajax'],
+		['GET',		'/home/CGU',							'Default#displayCGU',		'display_CGU'],
+
 
 );
+
+

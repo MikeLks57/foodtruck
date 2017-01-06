@@ -29,7 +29,7 @@
 			<div class="col-md-3 text-center ">
 				<div class="well">
 
-					<h1><?php echo $menu['name'] ?></h1>
+					<h3><?php echo $menu['name'] ?></h3>
 					
 					<img src="<?php echo $this->assetUrl('uploads/img/'.$menu['picture']) ?>" alt="<?php echo $menu['name'] ?>" class="img-rounded img-responsive">
 

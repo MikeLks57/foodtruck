@@ -15,7 +15,7 @@
             <?php $i=0; foreach ($allSlider as $slider): ?>
                 <!-- Boucle pour passer la class active uniquement à l'image 0 -->
                 <div class="item<?php if($i === 0) echo ' active' ?>">
-                    <img src="<?php echo $this->assetUrl('uploads/img/'.$slider['url']) ?>" alt="<?php echo $slider['name'] ?>">
+                    <img src="<?php echo $this->assetUrl('uploads/img/'.$slider['url']) ?>" alt="<?php echo $slider['title'] ?>">
                     <img src="<?= $this->assetUrl('uploads/img/').  $slider['url'] ?>" alt="<?= $slider['title'] ?>">
                     <div class="carousel-caption">
                         <h3><?= $slider['title'] ?></h3>
